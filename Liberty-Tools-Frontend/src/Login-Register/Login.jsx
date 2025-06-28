@@ -53,7 +53,7 @@ export const Login = () => {
 
             })
                 .catch(err => {
-          
+
                     Swal.fire({
                         title: "Server Error!",
                         text: err.response.data.message,
@@ -81,7 +81,7 @@ export const Login = () => {
                 .then((res) => {
 
                     if (res.status == 200) {
-               
+
                         dispatch(addUser(res.data.user))
                         navigate('/')
                         Swal.fire({
@@ -115,6 +115,18 @@ export const Login = () => {
                         text: err.response.data.message,
                         icon: "error"
                     })
+
+                    setFormData({
+                        'name': '',
+                        'employee_id': '',
+                        'password': '',
+                        'confirmPassword': '',
+
+
+                    })
+
+
+                    return
                 }
 
 
@@ -126,7 +138,6 @@ export const Login = () => {
         }
 
 
-
         setFormData({
             'name': '',
             'email': '',
@@ -136,6 +147,8 @@ export const Login = () => {
 
 
         })
+
+        console.log('form data', formData)
     }
 
     const handleForm = (e) => {
@@ -175,7 +188,7 @@ export const Login = () => {
 
                             <>
                                 <label className="label">Employee ID</label>
-                                <input type="text"  onChange={handleForm} name='employee_id' required className="input" placeholder="Employee ID" />
+                                <input type="text" onChange={handleForm} name='employee_id' required className="input" placeholder="Employee ID" />
                             </>
 
                         )
@@ -184,10 +197,10 @@ export const Login = () => {
 
 
                     <label className="label">Email</label>
-                    <input type="email" name='email'  onChange={handleForm} required className="input" placeholder="Compliance Email" />
+                    <input type="email" name='email' value={formData.email} onChange={handleForm} required className="input" placeholder="Compliance Email" />
 
                     <label className="label">Password</label>
-                    <input type="text" required className="input"  onChange={handleForm} name='password' placeholder="Compliance Password" />
+                    <input type="text" required className="input" value={formData.password} onChange={handleForm} name='password' placeholder="Compliance Password" />
                     {
                         formType == 'register' &&
                         (
@@ -195,7 +208,7 @@ export const Login = () => {
 
                             <>
                                 <label className="label">Confirm Password</label>
-                                <input type="text"  onChange={handleForm} required name='confirm-password' className="input" placeholder="Confirm Password" />
+                                <input type="text" onChange={handleForm} required name='confirm-password' className="input" placeholder="Confirm Password" />
                             </>
 
                         )
@@ -225,7 +238,7 @@ export const Login = () => {
 
                     </div>
 
-                    <button disabled={!formData.email || !formData.password} className="btn btn-neutral mt-4"> {formType == 'login' ? ('Login') : ('Register')} {loading && (<span className="loading loading-spinner loading-xs"></span>)} </button>
+                    <button disabled={!formData.email && !formData.password} className="btn btn-neutral mt-4"> {formType == 'login' ? ('Login') : ('Register')} {loading && (<span className="loading loading-spinner loading-xs"></span>)} </button>
                 </fieldset>
             </form>
 

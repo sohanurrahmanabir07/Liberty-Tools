@@ -16,7 +16,7 @@ export const SideNavbar = ({ categories }) => {
             <input id="navbar-drawer" type="checkbox" className="drawer-toggle" />
             <div className="drawer-side ">
                 <label htmlFor="navbar-drawer" aria-label="close sidebar" className="drawer-overlay"></label>
-                <ul className="menu relative bg-blue-50 w-2/3 space-y-5 text-center font-semibold text-gray-200 h-85/100 md:text-lg p-4">
+                <ul className="menu relative bg-blue-50 w-2/3 space-y-5 text-center font-semibold text-gray-200 h-screen md:text-lg p-4">
                     {/* Close Button for Mobile */}
                     <div className="flex flex-row-reverse md:hidden">
                         <div>
@@ -27,12 +27,12 @@ export const SideNavbar = ({ categories }) => {
                     </div>
 
                     {/* FAQ-Style Categories Section */}
-                    <li className="cursor-pointer  z-50">
+                    <div className="cursor-pointer  ">
                         <div className="flex space-x-2  items-center px-3 py-2 font-bold rounded-md btn btn-soft text-blue-700" onClick={() => setCategoriesOpen(!isCategoriesOpen)}>
                             <span>Products</span>
                             <FontAwesomeIcon icon={faChevronDown} className={`transition-transform duration-300 ${isCategoriesOpen ? "rotate-180" : ""}`} />
                         </div>
-                        <div className={`w-full flex-col bg-blue-50 shadow-md text-blue-700 mt-3  ${isCategoriesOpen ? `block` : `hidden`}  top-full`}>
+                        <div className={`w-full flex-col bg-blue-50 rounded-lg  p-3 shadow-lg text-blue-700 mt-3  ${isCategoriesOpen ? `block` : `hidden`}  top-full`}>
 
                             <div className="flex flex-row-reverse">
                                 <div className="text-xs  text-blue-700 underline" onClick={() => { navigate('/all-products'); document.getElementById('navbar-drawer').checked = false; }}>
@@ -44,14 +44,14 @@ export const SideNavbar = ({ categories }) => {
                                 {
                                     categories && categories.map((item, index) => {
                                         return (
-                                            <p onClick={() => { navigate(`/category/${urlConverter(item?.name)}`); document.getElementById("navbar-drawer").checked = false; }} key={index} className="text-md cursor-pointer ">{capitalizeWords(item?.name)}</p>
+                                            <p onClick={() => { navigate(`/category/${urlConverter(item?.name)}`); document.getElementById("navbar-drawer").checked = false; }} key={index} className="text-md cursor-pointer hover:underline ">{capitalizeWords(item?.name)}</p>
                                         )
                                     })
                                 }
                             </div>
 
                         </div>
-                    </li>
+                    </div>
 
                     {/* FAQ-Style About Section */}
                     <li className="cursor-pointer">
@@ -66,9 +66,7 @@ export const SideNavbar = ({ categories }) => {
                     <li className="cursor-pointer px-3 py-2 font-bold rounded-md btn btn-soft text-blue-700 hover:bg-blue-600" onClick={() => { navigate('/services'); document.getElementById("navbar-drawer").checked = false; }} >
                         Services
                     </li>
-                    {/* <li className="cursor-pointer px-3 py-2 font-bold rounded-md btn btn-soft text-blue-700 hover:bg-blue-600" onClick={() => { navigate('/projects'); document.getElementById("navbar-drawer").checked = false; }} >
-                        Projects
-                    </li> */}
+
                     <li className="cursor-pointer px-3 py-2 font-bold rounded-md btn btn-soft text-blue-700 hover:bg-blue-600" onClick={() => { navigate('/blog'); document.getElementById("navbar-drawer").checked = false; }} >
                         Blog
                     </li>
