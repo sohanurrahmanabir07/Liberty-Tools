@@ -45,8 +45,6 @@ const getLogo = async (req, res) => {
 const getCategories = async (req, res) => {
     try {
 
-        console.log('gett hit');
-
         const data = await Categories.find({})
         if (data) {
             res.send(data)
@@ -58,59 +56,6 @@ const getCategories = async (req, res) => {
         })
     }
 }
-
-// __________Add Products_______________________
-
-// const addProduct = async (req, res) => {
-
-//     try {
-//         const files = req.files; // multiple files from multer (images[])
-//         const infoString = req.body.info;
-
-
-//         if (!infoString) {
-//             return res.status(400).send({ message: "Missing info data" });
-//         }
-
-//         const info = JSON.parse(infoString); // parse stringified JSON
-//         const imageUrl = [];
-
-//         // Upload each file to Cloudinary
-//         for (const file of files) {
-//             const result = await cloudinary.uploader.upload(file.path);
-//             imageUrl.push(result.secure_url);
-//         }
-
-//         info.imageUrl = imageUrl;
-
-
-//         if (info.name != '' && info.imageUrl != "") {
-//             const newProduct = new Products(info);
-//             const savedProduct = await newProduct.save();
-
-//             const products = await Products.find({}).sort({ createdAt: -1 }).lean()
-
-//             if (products) {
-//                 res.status(200).send({
-//                     message: "Product uploaded successfully",
-//                     data: products,
-//                 });
-//             }
-//         } else {
-//             res.status(500).send({ 'message': 'Multiple Attempt' })
-//         }
-
-
-
-
-//     } catch (error) {
-//         console.error(error);
-//         res.status(500).send({ message: error.message });
-//     }
-
-
-
-// }
 
 const addProduct = async (req, res) => {
 

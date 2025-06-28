@@ -47,7 +47,7 @@ export const UploadBanner = () => {
         setLoading(true)
         axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/uploadBanner`, formData)
           .then((res) => {
-            console.log('res', res.data)
+
             if (res.status == 200) {
               setBanners(res.data.data)
               Swal.fire({

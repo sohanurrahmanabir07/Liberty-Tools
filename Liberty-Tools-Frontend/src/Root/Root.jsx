@@ -3,12 +3,15 @@ import { Navbar } from '../Navbar/Navbar'
 import { Outlet } from 'react-router-dom'
 import Footer from '../Footer/Footer'
 import { useDispatch, useSelector } from 'react-redux'
-import { ToastContainer } from 'react-toastify'
+
 import { socket } from '../Socket/socket'
 import axios from 'axios'
 import { addLogo } from '../Redux/LibertyStore'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
+import { Bounce, toast, ToastContainer } from 'react-toastify'
+
+
 
 export const Root = () => {
 
@@ -44,7 +47,6 @@ export const Root = () => {
     }
     socket.on('queries', (data) => {
       setQueries((prev) => [data.data, ...prev])
-
 
       toast.info('New Queries😱😱😱!!', {
         position: "top-center",
@@ -82,7 +84,7 @@ export const Root = () => {
 
           setBanners(res.data.data)
 
-          console.log('banners', banners)
+
         }
       })
       .catch((err) => console.log(err))
@@ -94,7 +96,7 @@ export const Root = () => {
 
           setBlogs(res.data.data)
 
-          console.log('blogs', blogs)
+
         }
       })
       .catch((err) => console.log(err))
@@ -106,7 +108,7 @@ export const Root = () => {
       .then((res) => {
         setProducts(res.data);
 
-        console.log('products', products)
+
 
 
 
@@ -117,7 +119,7 @@ export const Root = () => {
     axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/getCategories`)
       .then((res) => {
         setCategories(res.data)
-        console.log('categories', res)
+
       })
       .catch((err) => console.log(err))
 
@@ -133,15 +135,29 @@ export const Root = () => {
       })
 
   }, [])
+  const handleToast = () => {
 
+    toast.info('New Queries😱😱😱!!', {
+      position: "top-center",
+      autoClose: false,
+      hideProgressBar: true,
+      closeOnClick: false,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "light",
+      transition: Bounce,
+    });
+  }
 
   return (
     <div>
 
-      <ToastContainer></ToastContainer>
       <Navbar categories={categories}  ></Navbar>
+
       <Outlet context={data}></Outlet>
       <Footer></Footer>
+      <ToastContainer></ToastContainer>
 
 
 

@@ -12,7 +12,7 @@ import Swal from 'sweetalert2';
 export const DashboardCategories = () => {
     const { categories, setCategories } = useOutletContext();
     const navigate = useNavigate();
-    console.log('categories',categories)
+
     const handleClick = (item) => {
         navigate(`/category/${urlConverter(item?.name)}`);
     };

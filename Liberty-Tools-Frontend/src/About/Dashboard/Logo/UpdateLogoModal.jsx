@@ -53,7 +53,7 @@ export const UpdateLogoModal = () => {
     if (admin) {
       let formData = new FormData()
       if (File) {
-        console.log('File Selected', File)
+
 
         formData.append('images', File)
         formData.append('name', admin?.name)
@@ -63,7 +63,7 @@ export const UpdateLogoModal = () => {
         setLoading(true)
         axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/logoUpload`, formData)
           .then((res) => {
-            console.log('res', res)
+
             if (res.status == 200) {
               dispatch(addLogo((res.data.data)))
               Swal.fire({

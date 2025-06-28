@@ -86,7 +86,7 @@ export const Quote = () => {
                     </div>
                     <input
                         type="text"
-                        name='number'
+                        name='phone'
                         value={contact.phone}
                         onChange={handleForm}
                         placeholder="Phone number *"
@@ -112,7 +112,7 @@ export const Quote = () => {
                     ></textarea>
                     <button
                         type="submit"
-                        disabled={!contact.name || !contact.email || !contact.subject || !contact.description}
+                        disabled={!contact.name && !contact.email && !contact.subject && !contact.description}
                         onClick={handleSubmit}
                         className={`   ${!contact.name && !contact.email && !contact.subject && !contact.description ? `bg-gray-400 cursor-not-allowed ` : `bg-yellow-400 hover:bg-yellow-500`}  text-white text-lg font-semibold rounded-lg p-3 mt-2 transition`}
                     >

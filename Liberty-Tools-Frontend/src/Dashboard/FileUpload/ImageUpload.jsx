@@ -99,7 +99,7 @@ export const ImageUpload = () => {
 
 
                         socket.emit('UpdateFeed', data)
-                        console.log('emitting data', data)
+     
 
 
 

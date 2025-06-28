@@ -38,7 +38,7 @@ export const UpdateCategory = ({ item }) => {
             setBannerImage(item.bannerImgUrl[0] || null)
             setBannerFile(null)
             setImageFile(null) // 🔧 Clear file selection when modal re-opens
-            console.log('banner image', bannerImage)
+
         }
     }, [item]);
 

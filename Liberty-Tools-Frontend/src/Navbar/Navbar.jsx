@@ -19,7 +19,7 @@ export const Navbar = ({ products, categories }) => {
     const admin = useSelector((state) => state.LibertyTools.users)
     const isDashboard = location.pathname.startsWith('/dashboard');
 
-    console.log('dashboard', isDashboard)
+
     const dispatch = useDispatch()
 
 

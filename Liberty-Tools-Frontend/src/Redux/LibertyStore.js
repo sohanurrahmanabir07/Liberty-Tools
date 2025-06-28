@@ -13,7 +13,7 @@ const LibertyStoreSlice = createSlice({
   reducers: {
     addUser: (state, action) => {
       state.users = action.payload
-      console.log('from redux', state.users)
+
 
     },
     removeUser: (state, action) => {
