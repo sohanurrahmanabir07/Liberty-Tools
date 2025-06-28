@@ -42,7 +42,7 @@ export const Quote = () => {
 
     }
     return (
-        <div className=" max-w-[1340px] mx-auto py-10 px-5">
+        <div className=" max-w-[1340px] mx-auto py-10 px-5 bg-yellow-400">
 
 
             <div className="flex items-center max-sm:flex-col md:space-x-5">
@@ -114,7 +114,7 @@ export const Quote = () => {
                         type="submit"
                         disabled={!contact.name && !contact.email && !contact.subject && !contact.description}
                         onClick={handleSubmit}
-                        className={`   ${!contact.name && !contact.email && !contact.subject && !contact.description ? `bg-gray-400 cursor-not-allowed ` : `bg-yellow-400 hover:bg-yellow-500`}  text-white text-lg font-semibold rounded-lg p-3 mt-2 transition`}
+                        className={`   ${!contact.name || !contact.email || !contact.subject || !contact.description ? `bg-gray-400 cursor-not-allowed ` : `bg-yellow-400 hover:bg-yellow-500`}  text-white text-lg font-semibold rounded-lg p-3 mt-2 transition`}
                     >
                         Send Message
                     </button>
