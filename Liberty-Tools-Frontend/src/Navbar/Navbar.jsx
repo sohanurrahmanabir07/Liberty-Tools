@@ -69,8 +69,8 @@ export const Navbar = ({ products, categories }) => {
         <div className='relative'>
 
             <nav className='max-w-[1340px] mx-auto' >
-                <section className={` transition-colors duration-300 max-sm:text-black ${navbarBg} w-full fixed top-0 left-0  z-20 md:z-35 md:px-10 px-5  h-[70px]`}>
-                    <div className='flex justify-between mx-auto items-center max-w-[1340px]  md:justify-between' >
+                <section className={` transition-colors duration-300 max-sm:text-black ${navbarBg} w-full fixed top-0 left-0 bg-amber-700 max-sm:p-5 z-20 md:z-35 md:px-10 px-5  h-[70px]`}>
+                    <div className='flex justify-between mx-auto items-center max-w-[1340px]   ' >
 
                         {/* Start (Logo & Drawer) */}
 
@@ -82,7 +82,7 @@ export const Navbar = ({ products, categories }) => {
 
                             <div className='w-25 cursor-pointer block' onClick={() => navigate('/')}>
                                 {logo ?
-                                    (<img loading="lazy" src={logo} alt="Logo" className="h-10" />)
+                                    (<img loading="lazy" src={logo} alt="Logo"  />)
                                     : (<div className='skeleton rounded-sm h-10'></div>)
                                 }
                             </div>
@@ -145,7 +145,7 @@ export const Navbar = ({ products, categories }) => {
                             {isDashboard && (
                                 <label
                                     htmlFor="dashboard-drawer"
-                                    className="drawer-button text-black lg:hidden"
+                                    className="drawer-button text-black text-xl lg:hidden"
                                 >
                                     ☰
                                 </label>

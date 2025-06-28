@@ -22,8 +22,9 @@ import AdminDashboard from './Dashboard/Home/AdminDashboard.jsx'
 import { DashboardCategories } from './Dashboard/Dashboard Categories/DashboardCategories.jsx'
 import { AllProducts } from "./Product/AllProducts.jsx"
 import { DashboardServices } from './Dashboard/Dashboard Services/DashboardServices.jsx'
-import {Login} from "../src/Login-Register/Login.jsx"
+import { Login } from "../src/Login-Register/Login.jsx"
 import { DashboardBlog } from './Dashboard/Dashboard Blog/DashboardBlog.jsx'
+import { ProtectedRoute } from './Protected Route/ProtectedRoute.jsx'
 const router = createBrowserRouter([
   {
     path: "/",
@@ -71,7 +72,7 @@ const router = createBrowserRouter([
       },
       {
         path: "/dashboard",
-        element: <Dashboard></Dashboard>,
+        element: <ProtectedRoute><Dashboard></Dashboard></ProtectedRoute>,
         children: [
           {
             path: "/dashboard",
@@ -108,7 +109,7 @@ const router = createBrowserRouter([
       }
 
     ],
-    
+
   },
   {
     path: "/admin-login",

@@ -50,7 +50,7 @@ export const ProductInfo = ({ item }) => {
 
                         Object.keys(item.pdf).map((ele, index) => {
                             return (
-                                <div className="collapse-content text-sm  cursor-pointer group flex space-x-2" >
+                                <div key={index} className="collapse-content text-sm  cursor-pointer group flex space-x-2" >
                                     <p className='group-hover:underline text-blue-500 ' onClick={() => window.location.href = (item?.pdf[ele])} >{ele.toUpperCase()}</p>
                                     <FontAwesomeIcon icon={faDownload} size='lg' >
 

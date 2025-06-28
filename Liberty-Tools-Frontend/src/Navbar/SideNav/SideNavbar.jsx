@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useNavigate, useOutletContext } from "react-router";
 import { capitalizeWords, urlConverter } from "../../Functions/functions";
 import { useDispatch, useSelector } from "react-redux";
+import { removeUser } from "../../Redux/LibertyStore";
 
 export const SideNavbar = ({ categories }) => {
     const [isCategoriesOpen, setCategoriesOpen] = useState(false);

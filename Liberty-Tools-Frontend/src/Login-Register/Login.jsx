@@ -148,7 +148,6 @@ export const Login = () => {
 
         })
 
-        console.log('form data', formData)
     }
 
     const handleForm = (e) => {
@@ -238,7 +237,7 @@ export const Login = () => {
 
                     </div>
 
-                    <button disabled={!formData.email && !formData.password} className="btn btn-neutral mt-4"> {formType == 'login' ? ('Login') : ('Register')} {loading && (<span className="loading loading-spinner loading-xs"></span>)} </button>
+                    <button disabled={!formData.email || !formData.password} className="btn btn-neutral mt-4"> {formType == 'login' ? ('Login') : ('Register')} {loading && (<span className="loading loading-spinner loading-xs"></span>)} </button>
                 </fieldset>
             </form>
 

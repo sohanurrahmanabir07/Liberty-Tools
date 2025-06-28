@@ -12,7 +12,7 @@ export const SliderBanner = () => {
     const PrevArrow = ({ onClick }) => (
         <button
             onClick={onClick}
-            className="absolute left-4 md:text-3xl top-25/100 md:top-1/2 z-5 -translate-y-1/2  text-gray-400 cursor-pointer hover:text-gray-600"
+            className="absolute left-4 md:text-3xl text-2xl top-50/100 md:top-1/2 z-5 -translate-y-1/2  text-gray-400 cursor-pointer hover:text-gray-600"
         >
             <FontAwesomeIcon icon={faChevronLeft} size="2xl" ></FontAwesomeIcon>
         </button>
@@ -22,7 +22,7 @@ export const SliderBanner = () => {
     const NextArrow = ({ onClick }) => (
         <button
             onClick={onClick}
-            className="absolute right-4 md:text-3xl top-25/100   md:top-1/2 z-5 -translate-y-1/2  text-gray-400 cursor-pointer hover:text-gray-600"
+            className="absolute right-4 md:text-3xl text-2xl top-50/100   md:top-1/2 z-5 -translate-y-1/2  text-gray-400 cursor-pointer hover:text-gray-600"
         >
             <FontAwesomeIcon icon={faChevronRight} size="2xl" ></FontAwesomeIcon>
         </button>
@@ -55,8 +55,8 @@ export const SliderBanner = () => {
                                     banners.map((item, index) => {
 
                                         return (
-                                            <div className="w-full md:h-screen overflow-hidden " key={index}>
-                                                <img src={item.imageUrl[0]} className="w-full brightness-40 bg-cover h-screen" alt="" />
+                                            <div className="w-full  md:h-screen h-[500px] overflow-hidden " key={index}>
+                                                <img src={item.imageUrl[0]} className="w-full brightness-40 bg-cover md:h-screen" alt="" />
                                             </div>
                                         )
                                     })
@@ -65,8 +65,8 @@ export const SliderBanner = () => {
 
                                     [1, 2].map((item, index) => {
                                         return (
-                                            <div className="w-full md:h-screen overflow-hidden " key={index}>
-                                                <img src={banners[0].imageUrl[0]} className="w-full brightness-40 bg-cover h-screen" alt="" />
+                                            <div className="w-full  md:h-screen h-[450px] overflow-hidden " key={index}>
+                                                <img src={banners[0].imageUrl[0]} className="w-full brightness-40 bg-cover h-full md:h-screen" alt="" />
                                             </div>
                                         )
                                     })
