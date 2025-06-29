@@ -68,7 +68,7 @@ export const Product = () => {
                             )
                             :
                             (
-                                <div className="skeleton w-1/2 h-[300px]"></div>
+                                <div className="skeleton w-full md:w-1/2 h-[300px]"></div>
                             )
                     }
 

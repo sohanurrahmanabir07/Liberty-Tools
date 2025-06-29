@@ -97,9 +97,9 @@ export const BlogCard = ({ post }) => {
 
                         <div onClick={() => {
 
-                            navigate(`/blog/${post._id}`);
+                            navigate(`/blog/${post._id}`,{state:{blogID:post._id}});
 
-                        }} className="text-gray-700 hover:text-yellow-500 font-medium flex items-center gap-1">
+                        }} className="text-gray-700 hover:text-yellow-500 cursor-pointer font-medium flex items-center gap-1">
                             Read More <span className="text-xl">→</span>
                         </div>
                     </div>
@@ -127,7 +127,7 @@ export const BlogCard = ({ post }) => {
 
                 )
             }
-            <DescriptionModal index={post._id} description={post?.description} ></DescriptionModal>
+            {/* <DescriptionModal index={post._id} description={post?.description} location={location} ></DescriptionModal> */}
         </div>
     )
 }

@@ -72,31 +72,60 @@ export const ProductImage = ({ item }) => {
   };
 
   return (
-    <section className="px-4 py-6 bg-gray-100 rounded-lg max-w-[90vw] mx-auto overflow-hidden">
-      <div className="flex flex-col md:flex-row gap-4 max-h-[500px] justify-center items-center">
 
-        {/* Main Image Slider */}
-        <div className="w-full md:max-w-xl overflow-hidden">
-          <Slider {...settings} ref={sliderRef}>
-            {imageArr.map((img, index) => (
-              <div key={index} className="flex justify-center items-center h-[300px]">
-                <img loading="lazy" src={img} alt={`slide-${index}`} className="max-h-full object-contain w-full rounded-lg" />
+
+
+    <section className="px-4 py-6 bg-gray-100 rounded-lg w-full md:w-1/2 mx-auto overflow-hidden">
+      {
+        imageArr.length == 0 ?
+          (
+            <div className="skeleton h-[300px] w-[600px] "></div>
+          )
+          :
+          (
+            <div className="flex flex-col w-full md:flex-row gap-4 max-h-[500px] justify-center items-center">
+
+              {/* Main Image Slider */}
+              <div className="w-full  md:max-w-xl overflow-hidden">
+                {
+
+
+                  imageArr.length == 1 ?
+                    (
+                      <div className="flex justify-center items-center h-[300px]">
+                        <img loading="lazy" src={imageArr[0]} className="max-h-full object-contain w-full rounded-lg" />
+                      </div>
+                    )
+                    :
+                    (
+                      <Slider {...settings} ref={sliderRef}>
+                        {imageArr.map((img, index) => (
+                          <div key={index} className="flex justify-center items-center h-[300px]">
+                            <img loading="lazy" src={img} alt={`slide-${index}`} className="max-h-full object-contain w-full rounded-lg" />
+                          </div>
+                        ))}
+                      </Slider>
+                    )
+                }
+
+
               </div>
-            ))}
-          </Slider>
-        </div>
 
-        {/* Thumbnails */}
-        <div className="flex flex-row md:flex-col gap-2 overflow-x-auto max-w-[90vw] md:max-w-xs">
-          {imageArr.map((img, index) => (
-            <div key={index} onClick={() => sliderRef.current.slickGoTo(index)}
-              className="cursor-pointer border-2 border-gray-300 rounded-lg overflow-hidden hover:border-blue-500 transition-all duration-200">
-              <img loading="lazy" src={img} alt={`thumb-${index}`} className="w-20 h-20 object-cover" />
+              {/* Thumbnails */}
+
+              <div className="flex flex-row md:flex-col gap-2 overflow-x-auto max-w-[90vw] md:max-w-xs">
+                {imageArr.map((img, index) => (
+                  <div key={index} onClick={() => sliderRef.current.slickGoTo(index)}
+                    className="cursor-pointer border-2 border-gray-300 rounded-lg overflow-hidden hover:border-blue-500 transition-all duration-200">
+                    <img loading="lazy" src={img} alt={`thumb-${index}`} className="w-20 h-20 object-cover" />
+                  </div>
+                ))}
+              </div>
+
             </div>
-          ))}
-        </div>
+          )
+      }
 
-      </div>
     </section>
 
   );

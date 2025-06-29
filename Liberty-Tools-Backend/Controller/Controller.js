@@ -7,6 +7,7 @@ const { Products } = require("../Model/Prodcuts")
 const { Logo } = require("../Model/logo")
 const { Banners } = require("../Model/Banners")
 const { Blogs } = require("../Model/Blogs")
+const { Services } = require("../Model/services")
 
 const getProducts = async (req, res) => {
 
@@ -95,8 +96,8 @@ const addProduct = async (req, res) => {
         if (info.name && info.imageUrl.length > 0) {
             const newProduct = new Products(info);
             await newProduct.save();
-            console.log('new Product',newProduct);
-            
+            console.log('new Product', newProduct);
+
             const products = await Products.find({}).sort({ createdAt: -1 }).lean();
             return res.status(200).send({
                 message: "Product uploaded successfully",
@@ -685,8 +686,103 @@ const AddBlog = async (req, res) => {
     }
 }
 
+const addService = async (req, res) => {
+
+
+
+
+    try {
+        const newService = new Services(req.body)
+        const result = await newService.save()
+        const allService = await Services.find({}).lean()
+        if (result && allService) {
+            res.send({
+                'message': 'Service Added',
+                'data': allService
+            })
+        } else {
+            res.satus(401).send({
+                'message': 'Error Inserting Data',
+                'data': allService
+            })
+        }
+    } catch (error) {
+        res.send({
+            'message': 'Server Error'
+        })
+    }
+}
+const getServices = async (req, res) => {
+    try {
+        const result = await Services.find({}).lean()
+        if (result) {
+
+            res.send({
+                'data': result
+            })
+        } else {
+            res.status(401).send({
+                'message': 'Cant Get The Data',
+            })
+        }
+    } catch (error) {
+        res.status(500).send({
+            'message': 'Server Error',
+        })
+    }
+}
+const updateService = async (req, res) => {
+    try {
+        const { id } = req.params
+        const update = await Services.findByIdAndUpdate(
+            id,
+            req.body,
+            { new: true }
+        )
+
+        if (update) {
+            const result = await Services.find({}).lean()
+            res.send({
+                'message': 'Update Successful',
+                'data': result
+            })
+        } else {
+            res.status(401).send({
+                'message': 'Cant Update',
+            })
+        }
+
+    } catch (error) {
+        res.status(500).send({
+            'message': error.message,
+        })
+    }
+}
+
+const deleteService = async (req, res) => {
+
+    const { id } = req.body
+
+    const del = await Services.deleteOne({ _id: id })
+    try {
+        if (del) {
+            const data = await Services.find({}).lean()
+            res.status(200).send({
+                "message": "Service Deleted Successfully",
+                data: data
+            })
+        } else {
+            res.status(403).send({
+                "message": "Couldn't Delete it"
+            })
+        }
+
+    } catch (error) {
+        res.send(error.message)
+    }
+}
 
 
 module.exports = {
-    deleteBlog, getBlogs, AddBlog, deleteBanner, uploadBanner, getBanners, pdfUpload, getLogo, downloadPdfFiles, getProducts, addProduct, deleteProduct, getCategories, addCategory, deleteCategory, updateProduct, updateCategory
+    deleteService,updateService, getServices, addService, deleteBlog, getBlogs, AddBlog, deleteBanner, uploadBanner, getBanners, pdfUpload, getLogo, downloadPdfFiles, getProducts, addProduct, deleteProduct, getCategories, addCategory, deleteCategory, updateProduct, updateCategory
 }

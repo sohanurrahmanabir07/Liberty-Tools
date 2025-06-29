@@ -71,60 +71,62 @@ export const DashboardCategories = () => {
 
 
     return (
-        <div className='md:mx-4 my-2 space-y-3 px-2 '>
+        <div className='md:mx-4 my-2 space-y-3 px-5 '>
 
             <label htmlFor="my_modal_3" className='btn text-base font-semibold hover:bg-yellow-500 bg-yellow-400 rounded-md text-white  '>
                 Add New Category <FontAwesomeIcon icon={faPlus} ></FontAwesomeIcon>
             </label>
 
-            {/* <ImageUpload></ImageUpload> */}
-
-            <ImageModal></ImageModal>
-
-            <section className='flex flex-wrap gap-4'>
-
-                {
-                    categories && categories.map((item, index) => {
-                        return (
-                            <div className='relative group' key={index}>
-                                <div onClick={() => handleClick(item)} className="card cursor-pointer relative bg-base-100 p-10 border-2 border-yellow-500 rounded-md overflow-hidden  shadow-sm">
-                                    <figure>
-                                        <img
-                                            loading="lazy"
-                                
-                                            src={item?.imageUrl || 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png'}
-                                            alt="Shoes" className='aspect-[3/2] w-[200px]  hover:scale-105 duration-150 transition-all ease-in-out object-cover'
-                                        />
 
 
-                                    </figure>
-
-                                    <p className='absolute bottom-2 left-2 font-semibold text-xl text-gray-300 '>{capitalizeWords(item?.name)}</p>
 
 
+                <section className='flex md:flex-wrap flex-col max-sm:items-center   gap-4'>
+
+                    {
+                        categories && categories.map((item, index) => {
+                            return (
+                                <div className='relative group ' key={index}>
+                                    <div onClick={() => handleClick(item)} className="card cursor-pointer relative bg-base-100 p-10 border-2 border-yellow-500 rounded-md overflow-hidden  shadow-sm">
+                                        <figure>
+                                            <img
+                                                loading="lazy"
+
+                                                src={item?.imageUrl || 'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png'}
+                                                alt="Shoes" className='aspect-[3/2] md:w-[200px]  hover:scale-105 duration-150 transition-all ease-in-out object-cover'
+                                            />
+
+
+                                        </figure>
+
+                                        <p className='absolute bottom-2 left-2 font-semibold text-xl text-gray-300 '>{capitalizeWords(item?.name)}</p>
 
 
 
 
 
+
+
+                                    </div>
+                                    <div className='absolute md:group-hover:opacity-100 md:opacity-0 opacity-100  space-x-2 transition-all duration-150 ease-in-out right-2 top-2'>
+
+
+                                        <label htmlFor={`updateCategory-${item.name}`} className='btn btn-secondary btn-dash px-2 rounded-sm '  > Update </label>
+                                        <button className='btn btn-error btn-dash px-2 rounded-sm' onClick={() => handleDelete(item)}  >Delete?</button>
+                                    </div>
+
+                                    <UpdateCategory item={item}></UpdateCategory>
                                 </div>
-                                <div className='absolute md:group-hover:opacity-100 md:opacity-0 opacity-100  space-x-2 transition-all duration-150 ease-in-out right-2 top-2'>
 
-
-                                    <label htmlFor={`updateCategory-${item.name}`} className='btn btn-secondary btn-dash px-2 rounded-sm '  > Update </label>
-                                    <button className='btn btn-error btn-dash px-2 rounded-sm' onClick={() => handleDelete(item)}  >Delete?</button>
-                                </div>
-
-                                <UpdateCategory item={item}></UpdateCategory>
-                            </div>
-
-                        )
-                    })
-                }
+                            )
+                        })
+                    }
 
 
 
-            </section>
+                </section>
+
+
         </div>
     );
 };

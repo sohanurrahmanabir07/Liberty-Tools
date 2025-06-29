@@ -21,6 +21,7 @@ export const Root = () => {
   const [queries, setQueries] = useState([])
   const [banners, setBanners] = useState([])
   const [blogs, setBlogs] = useState([])
+  const [services,setServices]=useState([])
   const dispatch = useDispatch()
   const admin = useSelector((state) => state.LibertyTools.users)
   useEffect(() => {
@@ -36,7 +37,9 @@ export const Root = () => {
     banners: banners,
     setBanners: setBanners,
     blogs: blogs,
-    setBlogs: setBlogs
+    setBlogs: setBlogs,
+    services:services,
+    setServices:setServices
   }
 
   useEffect(() => {
@@ -107,6 +110,18 @@ export const Root = () => {
     axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/getProducts`)
       .then((res) => {
         setProducts(res.data);
+
+
+
+
+
+      })
+      .catch((err) => console.log(err))
+
+
+    axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/getServices`)
+      .then((res) => {
+       setServices(res.data.data)
 
 
 

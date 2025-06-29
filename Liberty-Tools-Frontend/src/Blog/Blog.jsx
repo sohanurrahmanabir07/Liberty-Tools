@@ -1,20 +1,42 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import banner from "../assets/img/page-title-bg.jpg"
 import { FaFolder, FaUser } from 'react-icons/fa6';
 import { Description } from '../About/About Descrption/Description';
 import { BlogCard } from './Blog Card/BlogCard';
 import { useLocation, useOutletContext, useParams } from 'react-router-dom';
+import { DescriptionModal } from './Blog Description Modal/DescriptionModal';
 export const Blog = () => {
     const location = useLocation()
     const { blogs, setBlogs } = useOutletContext()
-    const { blogId } = useParams()
+    const [currentBlog, setCurrentBlog] = useState(null)
 
     useEffect(() => {
-        if (blogId) {
-            document.getElementById(blogId).checked = true
+
+        if (location.state?.blogID && blogs) {
+            const blog = blogs?.filter((item, index) => item._id == location?.state?.blogID)
+
+
+
+
+            if (blog.length == 1) {
+
+                setCurrentBlog(blog[0])
+                setTimeout(() => {
+                    document.getElementById(blog[0]._id).checked = true
+                }, 500);
+
+            }
+
         }
 
-    }, [blogId])
+
+
+    }, [location.state, blogs])
+    useEffect(()=>{
+
+        window.scroll(0,0)
+    },[]    )
+
     return (
         <div className='space-y-10' >
             {
@@ -52,6 +74,11 @@ export const Blog = () => {
 
 
             </section>
+
+
+            {
+                currentBlog && <DescriptionModal index={currentBlog._id} description={currentBlog.description} location={location} ></DescriptionModal>
+            }
 
         </div>
     )

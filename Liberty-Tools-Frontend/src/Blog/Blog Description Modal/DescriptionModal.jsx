@@ -1,5 +1,11 @@
+import { useEffect } from "react"
+import { Navigate, replace, useLocation, useNavigate } from "react-router-dom";
 
-export const DescriptionModal = ({ description ,index}) => {
+export const DescriptionModal = ({ description,index}) => {
+
+     const location=useLocation()
+     const navigate=useNavigate()
+
     return (
         <>
             <input type="checkbox" id={index} className="modal-toggle" />
@@ -16,7 +22,11 @@ export const DescriptionModal = ({ description ,index}) => {
 
 
                     <div className="modal-action">
-                        <div  onClick={()=>document.getElementById(index).checked=false} className="btn">Close</div>
+                        <div  onClick={()=>{  
+                            
+                           navigate(location.pathname,{replace:true})
+                            
+                            document.getElementById(index).checked=false   }} className="btn">Close</div>
                     </div>
                 </div>
             </div>

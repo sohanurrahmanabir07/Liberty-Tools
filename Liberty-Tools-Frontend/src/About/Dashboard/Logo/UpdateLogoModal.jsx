@@ -81,7 +81,7 @@ export const UpdateLogoModal = () => {
             }
             setImagePath(null)
             setFile(null)
-            updatelogo.current.value = null
+            logo.current.value = null
 
 
 

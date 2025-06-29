@@ -5,8 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export const DashboardServices = () => {
     return (
-        <div>
-            <ServicesHome></ServicesHome>
-        </div>
+           <ServicesHome></ServicesHome>
+
     )
 }
