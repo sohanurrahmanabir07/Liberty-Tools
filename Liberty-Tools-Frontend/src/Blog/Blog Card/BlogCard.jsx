@@ -76,7 +76,7 @@ export const BlogCard = ({ post }) => {
                         alt={post?.title}
                         className="w-full h-56 object-cover"
                     />
-                    <span className="absolute bottom-3 right-3 bg-yellow-400 text-white px-4 py-1 rounded font-semibold text-xs">
+                    <span className="absolute bottom-3 right-3 bg-orange-500 text-white px-4 py-1 rounded font-semibold text-xs">
                         {post?.date}
                     </span>
                 </div>
@@ -99,7 +99,7 @@ export const BlogCard = ({ post }) => {
 
                             navigate(`/blog/${post._id}`,{state:{blogID:post._id}});
 
-                        }} className="text-gray-700 hover:text-yellow-500 cursor-pointer font-medium flex items-center gap-1">
+                        }} className="text-gray-700 hover:text-orange-500 cursor-pointer font-medium flex items-center gap-1">
                             Read More <span className="text-xl">→</span>
                         </div>
                     </div>

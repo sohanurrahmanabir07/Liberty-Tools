@@ -78,7 +78,7 @@ export const StaticInfo = ({ img }) => {
                 {points.map((point, idx) => (
                   <section key={idx} className="flex space-x-5 items-center group cursor-pointer">
                     <FontAwesomeIcon
-                      className="text-4xl md:text-gray-400 text-yellow-500 group-hover:text-yellow-500  duration-200 transition-all"
+                      className="text-4xl md:text-gray-400 text-orange-500 group-hover:text-orange-500  duration-200 transition-all"
                       icon={point.icon}
                     />
                     <div>

@@ -12,7 +12,7 @@ export const DashboardBlog = () => {
             <p className='md:text-5xl text-3xl text-center'>Blogs</p>
             <br />
             <div className='flex flex-row-reverse my-5'>
-                <button className='btn bg-yellow-400 text-white hover:bg-yellow-300' onClick={() => document.getElementById('BlogUpload').checked = true} >Add New Blog <FontAwesomeIcon icon={faPlus} size='md' ></FontAwesomeIcon></button>
+                <button className='btn bg-orange-500 text-white hover:bg-orange-500' onClick={() => document.getElementById('BlogUpload').checked = true} >Add New Blog <FontAwesomeIcon icon={faPlus} size='md' ></FontAwesomeIcon></button>
             </div>
             <BlogUpload></BlogUpload>
             <Blog  ></Blog>

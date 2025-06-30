@@ -109,11 +109,11 @@ const TestimonialsSlider = () => {
             <div className=" w-full mx-auto px-2">
                 <div className="text-center mb-10">
                     <div className="flex items-center justify-center gap-4 mb-2">
-                        <span className="w-14 h-1 bg-yellow-400 rounded"></span>
+                        <span className="w-14 h-1 bg-orange-500 rounded"></span>
                         <h2 className="text-3xl md:text-4xl font-bold text-gray-700">
                             Testimonials
                         </h2>
-                        <span className="w-14 h-1 bg-yellow-400 rounded"></span>
+                        <span className="w-14 h-1 bg-orange-500 rounded"></span>
                     </div>
                     <p className="text-gray-600 max-w-2xl mx-auto">
                         Hear what industry leaders say about our power tools—reliable, efficient, and built for professionals.
@@ -132,7 +132,7 @@ const TestimonialsSlider = () => {
                                     />
                                     <div className="text-lg font-semibold text-gray-700">{item.name}</div>
                                     <div className="text-gray-400 text-sm mb-1">{item.title}</div>
-                                    <div className="text-yellow-400 font-bold text-xs mb-1">{item.tool}</div>
+                                    <div className="text-orange-500 font-bold text-xs mb-1">{item.tool}</div>
                                     <div className="flex gap-1 text-yellow-400 mb-2">
                                         {[...Array(item.rating)].map((_, i) => (
                                             <FaStar key={i} />
@@ -144,12 +144,12 @@ const TestimonialsSlider = () => {
                                 </div>
                                 {/* Testimonial Text */}
                                 <div className="flex-1 pl-3 flex flex-col justify-center">
-                                    <FaQuoteLeft className="text-yellow-400 text-2xl mb-2" />
+                                    <FaQuoteLeft className="text-orange-500 text-2xl mb-2" />
                                     <p className="italic text-gray-700 text-base leading-relaxed line-clamp-4">
                                         {item.text}
                                     </p>
                                     <div className="flex justify-end">
-                                        <FaQuoteRight className="text-yellow-200 text-2xl mt-2" />
+                                        <FaQuoteRight className="text-orange-500 text-2xl mt-2" />
                                     </div>
                                 </div>
                             </div>

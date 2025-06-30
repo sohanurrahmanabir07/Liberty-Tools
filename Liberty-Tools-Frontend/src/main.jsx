@@ -25,6 +25,7 @@ import { DashboardServices } from './Dashboard/Dashboard Services/DashboardServi
 import { Login } from "../src/Login-Register/Login.jsx"
 import { DashboardBlog } from './Dashboard/Dashboard Blog/DashboardBlog.jsx'
 import { ProtectedRoute } from './Protected Route/ProtectedRoute.jsx'
+import { ScrollTop } from './Custom Hooks/ScrollTop.jsx'
 const router = createBrowserRouter([
   {
     path: "/",
@@ -123,8 +124,9 @@ createRoot(document.getElementById('root')).render(
 
     <PersistGate loading={<p>Loading From Redux.....</p>} persistor={persistor} >
 
-
+      
       <RouterProvider router={router} />
+      
     </PersistGate>
   </Provider>
 

@@ -55,7 +55,7 @@ const ContactSection = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
                     {/* Address */}
                     <div className="bg-white rounded shadow p-8 flex flex-col items-center">
-                        <FaMapMarkerAlt className="text-yellow-400 text-5xl mb-2 border-2 border-dotted border-yellow-200 rounded-full p-2" />
+                        <FaMapMarkerAlt className="text-orange-500 text-5xl mb-2 border-2 border-dotted border-yellow-200 rounded-full p-2" />
                         <div className="text-lg font-semibold text-gray-700 mb-1">Address</div>
                         <div className="text-gray-500 text-center">
                             A108 Adam Street, New York, NY 535022
@@ -63,13 +63,13 @@ const ContactSection = () => {
                     </div>
                     {/* Phone */}
                     <div className="bg-white rounded shadow p-8 flex flex-col items-center">
-                        <FaPhoneAlt className="text-yellow-400 text-5xl mb-2 border-2 border-dotted border-yellow-200 rounded-full p-2" />
+                        <FaPhoneAlt className="text-orange-500 text-5xl mb-2 border-2 border-dotted border-yellow-200 rounded-full p-2" />
                         <div className="text-lg font-semibold text-gray-700 mb-1">Call Us</div>
                         <div className="text-gray-500 text-center">+1 3322 5228 27</div>
                     </div>
                     {/* Email */}
                     <div className="bg-white rounded shadow p-8 flex flex-col items-center">
-                        <FaEnvelope className="text-yellow-400 text-5xl mb-2 border-2 border-dotted border-yellow-200 rounded-full p-2" />
+                        <FaEnvelope className="text-orange-500 text-5xl mb-2 border-2 border-dotted border-yellow-200 rounded-full p-2" />
                         <div className="text-lg font-semibold text-gray-700 mb-1">Email Us</div>
                         <div className="text-gray-500 text-center">info@libertytools.us</div>
                     </div>
@@ -99,7 +99,7 @@ const ContactSection = () => {
                                 value={contact.name}
                                 name="name"
                                 onChange={handleChange}
-                                className="flex-1 border border-gray-300 rounded p-3 focus:outline-none focus:border-yellow-400"
+                                className="flex-1 border border-gray-300 rounded p-3 focus:outline-none focus:border-orange-500"
                             />
                             <input
                                 type="email"
@@ -107,7 +107,7 @@ const ContactSection = () => {
                                 value={contact.email}
                                 onChange={handleChange}
                                 name="email"
-                                className="flex-1 border border-gray-300 rounded p-3 focus:outline-none focus:border-yellow-400"
+                                className="flex-1 border border-gray-300 rounded p-3 focus:outline-none focus:border-orange-500"
                             />
                         </div>
                         <input
@@ -125,7 +125,7 @@ const ContactSection = () => {
                             name="subject"
                             value={contact.subject}
                             onChange={handleChange}
-                            className="border border-gray-300 rounded p-3 focus:outline-none focus:border-yellow-400"
+                            className="border border-gray-300 rounded p-3 focus:outline-none focus:border-orange-500"
                         />
                         <textarea
                             placeholder="Message"
@@ -133,13 +133,13 @@ const ContactSection = () => {
                             name="description"
                             value={contact.description}
                             onChange={handleChange}
-                            className="border border-gray-300 rounded p-3 focus:outline-none focus:border-yellow-400 resize-none"
+                            className="border border-gray-300 rounded p-3 focus:outline-none focus:border-orange-500 resize-none"
                         ></textarea>
                         <button
                             type="submit"
                             disabled={!contact.name && !contact.email && !contact.subject && !contact.description}
                             onClick={handleSubmit}
-                            className={`  ${!contact.name || !contact.email || !contact.subject || !contact.description ? `bg-gray-400 cursor-not-allowed ` : `bg-yellow-400 hover:bg-yellow-500`}  text-white text-lg font-semibold rounded-full py-3 mt-2 transition`}
+                            className={`  ${!contact.name || !contact.email || !contact.subject || !contact.description ? `bg-gray-400 cursor-not-allowed ` : `bg-orange-500 hover:bg-orange-500`}  text-white text-lg font-semibold rounded-full py-3 mt-2 transition`}
                         >
                             Send Message
                         </button>

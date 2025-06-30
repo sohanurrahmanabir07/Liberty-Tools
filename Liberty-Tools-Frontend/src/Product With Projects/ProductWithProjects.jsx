@@ -19,11 +19,11 @@ export const ProductWithProjects = () => {
       {/* Section Title */}
       <div className="flex flex-col items-center mb-6">
         <div className="flex items-center gap-3 mb-1">
-          <span className="w-14 h-1 bg-yellow-400 rounded"></span>
+          <span className="w-14 h-1 bg-orange-500 rounded"></span>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-700">
             Products
           </h2>
-          <span className="w-14 h-1 bg-yellow-400 rounded"></span>
+          <span className="w-14 h-1 bg-orange-500 rounded"></span>
         </div>
       </div>
       {/* Image Grid */}
@@ -34,7 +34,7 @@ export const ProductWithProjects = () => {
             onClick={() => navigate(`/products/${item?.model}`)}
             data-aos="zoom-in-up"
             data-aos-duration="1500"
-            className="relative group rounded-xl border-2 border-yellow-300 overflow-hidden aspect-[4/3] cursor-pointer"
+            className="relative group  rounded-xl border-2 border-orange-500 overflow-hidden aspect-[4/3] cursor-pointer"
           >
             {/* Background image */}
             <div
@@ -45,7 +45,7 @@ export const ProductWithProjects = () => {
             <div className="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition duration-300 z-10">
               <div className="flex gap-4 mb-4">
 
-                <button className="bg-opacity-80 rounded-full p-3 cursor-pointer shadow bg-yellow-400 transition">
+                <button className="bg-opacity-80 rounded-full p-3 cursor-pointer shadow bg-orange-500 transition">
                   <FaLink className="text-gray-700 group-hover:text-white" size={20} />
                 </button>
               </div>
@@ -56,7 +56,7 @@ export const ProductWithProjects = () => {
             </div>
             {/* Label for card 2 as in screenshot */}
             {(
-              <span className="absolute top-3 left-3 bg-yellow-600 text-white px-3 py-1 rounded font-semibold text-sm z-20">
+              <span className="absolute top-3 left-3 bg-orange-500 text-white px-3 py-1 rounded font-semibold text-sm z-20">
                 {item?.model.toUpperCase()}
               </span>
             )}

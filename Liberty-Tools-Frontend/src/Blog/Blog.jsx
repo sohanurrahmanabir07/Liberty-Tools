@@ -32,10 +32,10 @@ export const Blog = () => {
 
 
     }, [location.state, blogs])
-    useEffect(()=>{
+    useEffect(() => {
 
-        window.scroll(0,0)
-    },[]    )
+        window.scroll(0, 0)
+    }, [])
 
     return (
         <div className='space-y-10' >
@@ -59,21 +59,24 @@ export const Blog = () => {
                 )
             }
 
-            <section className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-y-5 max-w-[1340px] mx-auto'>
-                {
-                    blogs.length > 0 ?
+            <div >
+                <section className='grid px-5 grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-y-5 max-w-[1340px] mx-auto'>
+                    {
+                        blogs.length > 0 ?
 
-                        blogs.map((post, i) => (
-                            <BlogCard key={i} post={post}  ></BlogCard>
-                        ))
+                            blogs.map((post, i) => (
+                                <BlogCard key={i} post={post}  ></BlogCard>
+                            ))
 
-                        :
+                            :
 
-                        ''
-                }
+                            ''
+                    }
 
 
-            </section>
+                </section>
+            </div>
+
 
 
             {

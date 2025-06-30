@@ -87,7 +87,7 @@ export const SliderBanner = () => {
             <div className="text-center w-3/4  md:w-[650px] space-y-10 absolute top-1/2 left-1/2 transform -translate-x-1/2  -translate-y-1/2">
                 <h1 className="md:text-6xl text-3xl font-bold text-white">Welcome to Liberty <br /> Equipment</h1>
                 <p className="font-semibold text-white">Discover innovative, high-quality tools and equipment designed to enhance efficiency and productivity. At Liberty Equipment, we are committed to providing reliable solutions for all your industrial needs.</p>
-                <button className="font-semibold text-white hover:bg-yellow-500 transition-all duration-300 cursor-pointer px-10 py-3 rounded-l-full rounded-r-full border-2 border-yellow-500">Get Started</button>
+                <button className="font-semibold text-white hover:bg-orange-500 transition-all duration-300 cursor-pointer px-10 py-3 rounded-l-full rounded-r-full border-2 border-orange-500">Get Started</button>
             </div>
         </div>
 

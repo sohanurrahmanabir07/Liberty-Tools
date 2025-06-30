@@ -109,12 +109,12 @@ export const ImageModal = () => {
                         <div className='space-y-2'>
 
                             <input type="text" value={name} onChange={(e) => setName(e.target.value)} className='border-2 font-semibold border-gray-300 p-2  w-full rounded-lg' placeholder='Enter Category Name' id="" />
-                            <div className='flex space-x-2 border-2 border-yellow-400 p-2 rounded-lg cursor-pointer'>
+                            <div className='flex space-x-2 border-2 border-orange-500 p-2 rounded-lg cursor-pointer'>
                                 <p className='font-semibold'>Category Image :</p>
                                 <input type="file" ref={ImageFileInputRef} id="img" name="img" onChange={(e) => handleFileChange(e, 'image')} className='borer-1 border-gray-200' accept="image/*" />
                             </div>
 
-                            <div className='flex space-x-2 border-2 border-yellow-400 p-2 rounded-lg cursor-pointer'>
+                            <div className='flex space-x-2 border-2 border-orange-500 p-2 rounded-lg cursor-pointer'>
                                 <p className='font-semibold'>Banner Image : </p>
                                 <input type="file" ref={BannerFileInputRef} id="img" name="img" onChange={(e) => handleFileChange(e, 'bannerImage')} className='borer-1 border-gray-200' accept="image/*" />
                             </div>

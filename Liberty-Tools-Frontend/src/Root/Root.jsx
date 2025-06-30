@@ -10,6 +10,7 @@ import { addLogo } from '../Redux/LibertyStore'
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { Bounce, toast, ToastContainer } from 'react-toastify'
+import { ScrollTop } from '../Custom Hooks/ScrollTop'
 
 
 
@@ -21,7 +22,7 @@ export const Root = () => {
   const [queries, setQueries] = useState([])
   const [banners, setBanners] = useState([])
   const [blogs, setBlogs] = useState([])
-  const [services,setServices]=useState([])
+  const [services, setServices] = useState([])
   const dispatch = useDispatch()
   const admin = useSelector((state) => state.LibertyTools.users)
   useEffect(() => {
@@ -38,8 +39,8 @@ export const Root = () => {
     setBanners: setBanners,
     blogs: blogs,
     setBlogs: setBlogs,
-    services:services,
-    setServices:setServices
+    services: services,
+    setServices: setServices
   }
 
   useEffect(() => {
@@ -121,7 +122,7 @@ export const Root = () => {
 
     axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/getServices`)
       .then((res) => {
-       setServices(res.data.data)
+        setServices(res.data.data)
 
 
 
@@ -169,7 +170,7 @@ export const Root = () => {
     <div>
 
       <Navbar categories={categories}  ></Navbar>
-
+      <ScrollTop></ScrollTop>
       <Outlet context={data}></Outlet>
       <Footer></Footer>
       <ToastContainer></ToastContainer>

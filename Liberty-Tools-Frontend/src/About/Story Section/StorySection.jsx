@@ -30,15 +30,15 @@ const StorySection = () => {
             </p>
             <ul className="mb-4 space-y-2">
               <li className="flex items-start gap-2 text-gray-600">
-                <FaCheckCircle className="text-yellow-400 mt-1" />
+                <FaCheckCircle className="text-orange-500 mt-1" />
                 <span>Launched our flagship cordless tool series, setting a new benchmark for reliability and innovation in the industry.</span>
               </li>
               <li className="flex items-start gap-2 text-gray-600">
-                <FaCheckCircle className="text-yellow-400 mt-1" />
+                <FaCheckCircle className="text-orange-500 mt-1" />
                 <span>Expanded our product line to include heat guns, electric sanders, rotary tools, and angle grinders, meeting the evolving needs of our customers.</span>
               </li>
               <li className="flex items-start gap-2 text-gray-600">
-                <FaCheckCircle className="text-yellow-400 mt-1" />
+                <FaCheckCircle className="text-orange-500 mt-1" />
                 <span>Established robust international logistics, allowing us to supply our products efficiently to clients around the world.</span>
               </li>
             </ul>
@@ -47,9 +47,9 @@ const StorySection = () => {
             </p>
             <a
               href="#"
-              className="flex items-center gap-2 text-lg text-gray-700 hover:text-yellow-400 font-semibold transition"
+              className="flex items-center gap-2 text-lg text-gray-700 hover:text-orange-500 font-semibold transition"
             >
-              <FaPlayCircle className="text-yellow-400 text-2xl" />
+              <FaPlayCircle className="text-orange-500 text-2xl" />
               Watch Video
             </a>
           </div>

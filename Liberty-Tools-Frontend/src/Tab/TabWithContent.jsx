@@ -17,17 +17,17 @@ const tabData = [
           <h2 className="text-4xl font-bold text-gray-700">
             Streamlined Operations for Enhanced Productivity
           </h2>
-          <div className="w-20 h-1 bg-yellow-400 my-4"></div>
+          <div className="w-20 h-1 bg-orange-500 my-4"></div>
           <p className="italic text-gray-600 mb-2">
             Efficient job sites are the backbone of successful projects, and we provide the tools and solutions to make it happen. From innovative machinery to advanced equipment, our offerings are designed to save time and effort, enabling your team to focus on what matters most.
           </p>
           <ul className="mb-2">
             <li className="flex items-start gap-2 text-lg my-2">
-              <span className="text-yellow-400 mt-1">✓</span>
+              <span className="text-orange-500 mt-1">✓</span>
               <span className="text-gray-700">Reduce Downtime with Reliable Equipment.</span>
             </li>
             <li className="flex items-start gap-2 text-lg">
-              <span className="text-yellow-400 mt-1">✓</span>
+              <span className="text-orange-500 mt-1">✓</span>
               <span className="text-gray-700">Boost Productivity Through Innovation.</span>
             </li>
           </ul>
@@ -55,17 +55,17 @@ const tabData = [
           <h2 className="text-4xl font-bold text-gray-700">
             Safety Comes First
           </h2>
-          <div className="w-20 h-1 bg-yellow-400 my-4"></div>
+          <div className="w-20 h-1 bg-orange-500 my-4"></div>
           <p className="italic text-gray-600 mb-2">
             Our commitment to safety ensures every jobsite is equipped for secure and efficient work.
           </p>
           <ul className="mb-2">
             <li className="flex items-start gap-2 text-lg my-2">
-              <span className="text-yellow-400 mt-1">✓</span>
+              <span className="text-orange-500 mt-1">✓</span>
               <span className="text-gray-700">Comprehensive Safety Gear</span>
             </li>
             <li className="flex items-start gap-2 text-lg">
-              <span className="text-yellow-400 mt-1">✓</span>
+              <span className="text-orange-500 mt-1">✓</span>
               <span className="text-gray-700">Training and Best Practices</span>
             </li>
           </ul>
@@ -89,17 +89,17 @@ const tabData = [
           <h2 className="text-4xl font-bold text-gray-700">
             Equipment Management Made Simple
           </h2>
-          <div className="w-20 h-1 bg-yellow-400 my-4"></div>
+          <div className="w-20 h-1 bg-orange-500 my-4"></div>
           <p className="italic text-gray-600 mb-2">
             Manage and maintain your equipment inventory easily for maximum ROI and uptime.
           </p>
           <ul className="mb-2">
             <li className="flex items-start gap-2 text-lg my-2">
-              <span className="text-yellow-400 mt-1">✓</span>
+              <span className="text-orange-500 mt-1">✓</span>
               <span className="text-gray-700">Track Usage and Maintenance</span>
             </li>
             <li className="flex items-start gap-2 text-lg">
-              <span className="text-yellow-400 mt-1">✓</span>
+              <span className="text-orange-500 mt-1">✓</span>
               <span className="text-gray-700">Reduce Loss and Downtime</span>
             </li>
           </ul>
@@ -123,17 +123,17 @@ const tabData = [
           <h2 className="text-4xl font-bold text-gray-700">
             Innovative Solutions for Modern Construction
           </h2>
-          <div className="w-20 h-1 bg-yellow-400 my-4"></div>
+          <div className="w-20 h-1 bg-orange-500 my-4"></div>
           <p className="italic text-gray-600 mb-2">
             Stay ahead of the curve with the latest in construction technology and methods.
           </p>
           <ul className="mb-2">
             <li className="flex items-start gap-2 text-lg my-2">
-              <span className="text-yellow-400 mt-1">✓</span>
+              <span className="text-orange-500 mt-1">✓</span>
               <span className="text-gray-700">Cutting-Edge Tools</span>
             </li>
             <li className="flex items-start gap-2 text-lg">
-              <span className="text-yellow-400 mt-1">✓</span>
+              <span className="text-orange-500 mt-1">✓</span>
               <span className="text-gray-700">Smart Automation</span>
             </li>
           </ul>
@@ -172,7 +172,7 @@ const TabsOrAccordion = () => {
             key={tab.label}
             className={`px-6 py-4 cursor-pointer text-lg font-semibold focus:outline-none transition border-b-4 ${
               activeTab === idx
-                ? "border-yellow-400 text-gray-800"
+                ? "border-orange-500 text-gray-800"
                 : "border-transparent text-gray-700"
             }`}
             onClick={() => setActiveTab(idx)}

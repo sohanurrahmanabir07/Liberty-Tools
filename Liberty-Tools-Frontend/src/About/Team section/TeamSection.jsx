@@ -44,9 +44,9 @@ const TeamSection = () => (
     <div className="max-w-6xl w-full mx-auto px-4">
       <div className="text-center mb-8">
         <div className="flex items-center justify-center gap-4 mb-2">
-          <span className="w-14 h-1 bg-yellow-400 rounded"></span>
+          <span className="w-14 h-1 bg-orange-500 rounded"></span>
           <h2 className="text-3xl md:text-4xl font-bold text-gray-700">Team</h2>
-          <span className="w-14 h-1 bg-yellow-400 rounded"></span>
+          <span className="w-14 h-1 bg-orange-500 rounded"></span>
         </div>
         <p className="text-gray-500 max-w-2xl mx-auto">
           Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit

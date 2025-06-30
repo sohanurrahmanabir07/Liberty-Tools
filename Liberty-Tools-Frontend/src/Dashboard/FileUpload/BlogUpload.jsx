@@ -126,9 +126,9 @@ export const BlogUpload = () => {
                                 required
                             ></textarea>
 
-                            <div className='flex w-full space-x-2 border-2 border-yellow-400 p-2 rounded-lg cursor-pointer'>
+                            <div className='flex w-full space-x-2 border-2 border-gray-300 p-2 rounded-lg cursor-pointer'>
                                 <p className='font-semibold'>Blog Image : </p>
-                                <input type="file" ref={ImageFileInputRef} id="img" name="img" onChange={(e) => handleFileChange(e)} className='borer-1 bg-amber-100 border-gray-200' accept="image/*" />
+                                <input type="file" ref={ImageFileInputRef} id="img" name="img" onChange={(e) => handleFileChange(e)} className='borer-1  border-gray-200' accept="image/*" />
                             </div>
                         </div>
 

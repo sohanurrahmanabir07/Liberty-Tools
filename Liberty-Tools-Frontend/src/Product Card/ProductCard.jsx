@@ -66,16 +66,16 @@ export const ProductCard = ({ item }) => {
 
   return (
     <div className='md:p-3'>
-      <div className='border-2 border-yellow-500 group relative flex items-center justify-center font-semibold p-5 cursor-pointer rounded-xl'>
+      <div className='border-2 border-orange-500 group relative flex items-center justify-center font-semibold p-5 cursor-pointer rounded-xl'>
         <div onClick={() => navigate(`/products/${item?.model}`)} className='relative' >
-          <img loading="lazy" src={item?.imageUrl[0]} className='w-[300px] h-[200px] rounded-xl ' alt="" />
-          <p className='tooltip max-sm:hidden absolute bottom-0 right-1 bg-yellow-600 text-white px-3 py-1 rounded font-semibold text-sm' data-tip={item?.model}>{item?.model?.slice(0, 10).toUpperCase()} {item?.model.length > 20 && (
+          <img loading="lazy" src={item?.imageUrl[0]} className='w-[250px] h-[200px] rounded-xl ' alt="" />
+          <p className='tooltip max-sm:hidden absolute bottom-0 right-1 bg-orange-500 text-white px-3 py-1 rounded font-semibold text-sm' data-tip={item?.model}>{item?.model?.slice(0, 10).toUpperCase()} {item?.model.length > 20 && (
             <span>
               ...
             </span>
           )} </p>
 
-          <span className="absolute top-0 left-1 bg-yellow-600 text-white px-3 py-1 rounded font-semibold text-sm ">
+          <span className="absolute top-0 left-1 bg-orange-500 text-white px-3 py-1 rounded font-semibold text-sm ">
             {item?.category.toUpperCase()}
           </span>
 

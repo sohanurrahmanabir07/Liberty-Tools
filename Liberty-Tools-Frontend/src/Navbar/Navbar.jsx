@@ -58,7 +58,7 @@ export const Navbar = ({ products, categories }) => {
     // Dynamic classes for navbar background and text color
     let navbarBg = scrolled || location.pathname.startsWith('/dashboard') ? "bg-white text-black shadow" : "bg-transparent text-white";
     let linkText = scrolled || location.pathname.startsWith('/dashboard') ? "text-black" : "text-white";
-    const activeBorder = scrolled ? "border-b-2 border-yellow-500" : "border-b-2 border-yellow-300";
+    const activeBorder = scrolled ? "border-b-2 border-orange-500" : "border-b-2 border-orange-500";
 
     useEffect(() => {
         linkText = scrolled || location.pathname.startsWith('/dashboard') ? "text-black" : "text-white";
@@ -169,11 +169,11 @@ export const Navbar = ({ products, categories }) => {
             {showMegaBar && (
                 <div
                 ref={megaBarRef}
-                className="bg-white w-full transition-all duration-300 hidden md:block max-w-[1340px] mx-auto left-1/2 transform -translate-x-1/2 fixed top-[70px] shadow-2xl shadow-yellow-500 rounded-lg z-50"
+                className="bg-white w-full transition-all duration-300 hidden md:block max-w-[1340px] mx-auto left-1/2 transform -translate-x-1/2 fixed top-[70px] shadow-2xl shadow-orange-300 rounded-lg z-50"
             >
                     <div className='flex justify-end p-2'>
                         <div
-                            className='cursor-pointer hover:scale-105 text-yellow-500'
+                            className='cursor-pointer hover:scale-105 text-orange-500 duration-300'
                             onClick={() => { setShowMegaBar(false); navigate('/all-products'); }}
                         >
                             View All Products

@@ -33,7 +33,7 @@ export const ServicesHome = () => {
                     const { width, height, ...restAttribs } = domNode.attribs || {};
                     domNode.attribs = {
                         ...restAttribs,
-                        className: 'w-12 text-gray-400 group-hover:text-yellow-500',
+                        className: 'w-12 text-gray-400 group-hover:text-orange-500',
                         fill: 'currentColor',
                     };
                 }
@@ -112,13 +112,13 @@ export const ServicesHome = () => {
         <div>
 
             <AddService></AddService>
-            <div className='bg-gray-50 px-5 w-full' >
+            <div className={`bg-gray-50 p-5 w-full  ${location.pathname.startsWith('/dashboard') ? `h-screen`: ``} `} >
 
                 <div className="max-w-[1340px] mx-auto py-10">
                     {code}
                     <div className="text-center space-y-4 ">
 
-                        <p className="font-bold md:text-5xl text-3xl"> <span className="text-yellow-500">____</span> Services <span className="text-yellow-500">____</span></p>
+                        <p className="font-bold md:text-5xl text-3xl"> <span className="text-orange-500">____</span> Services <span className="text-orange-500">____</span></p>
                         <p className="font-semibold ">Innovative Tools for Modern Construction Success</p>
                     </div>
                     <br />
@@ -126,7 +126,7 @@ export const ServicesHome = () => {
                         location.pathname.startsWith('/dashboard') &&
                         (
                             <>
-                                <label htmlFor="AddService" className='btn my-5 text-base font-semibold hover:bg-yellow-500 bg-yellow-400 rounded-md text-white  '>
+                                <label htmlFor="AddService" className='btn my-5 text-base font-semibold hover:bg-orange-500 bg-orange-500 rounded-md text-white  '>
                                     Add New Services <FontAwesomeIcon icon={faPlus} ></FontAwesomeIcon>
                                 </label>
 
@@ -138,8 +138,8 @@ export const ServicesHome = () => {
 
 
                     <section className="grid grid-cols-1 md:grid-cols-3 gap-3">
-                        {/* <div className="border-2 group shadow-lg shadow-gray-400 cursor-pointer  p-10 space-y-5 border-yellow-500 rounded-lg overflow-hidden items-center ">
-                            <div className='text-2xl group-hover:text-yellow-500  text-gray-500   transition-all duration-200'>
+                        {/* <div className="border-2 group shadow-lg shadow-gray-400 cursor-pointer  p-10 space-y-5 border-orange-500 rounded-lg overflow-hidden items-center ">
+                            <div className='text-2xl group-hover:text-orange-500  text-gray-500   transition-all duration-200'>
                                 <FontAwesomeIcon icon={faMoneyCheckDollar} size='2xl' ></FontAwesomeIcon>
 
                             </div>
@@ -153,7 +153,7 @@ export const ServicesHome = () => {
                         {
                             services && services.map((item, index) => {
                                 return (
-                                    <div key={index} className="border-2 relative shadow-lg shadow-gray-400 group cursor-pointer  p-10 space-y-5 border-yellow-500 rounded-lg overflow-hidden items-center ">
+                                    <div key={index} className="border-2 relative shadow-lg shadow-gray-400 group cursor-pointer  p-10 space-y-5 border-orange-500 rounded-lg overflow-hidden items-center ">
                                         <div className='text-2xl  text-gray-500   transition-all duration-200 '>
                                             {svgConverter(item?.svgCode)}
                                         </div>

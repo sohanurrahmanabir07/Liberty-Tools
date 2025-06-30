@@ -73,16 +73,16 @@ const BlogSlider = () => {
   return (
     (
       <div className="bg-gray-100">
-        <div className="w-full max-w-[1300px] mx-auto py-10" data-aos="fade-up"
+        <div className="w-full max-w-[1300px] px-5 mx-auto py-10" data-aos="fade-up"
           data-aos-duration="1500">
           {/* Section Title */}
           <div className="text-center mb-8">
             <div className="flex justify-center items-center gap-4 mb-2">
-              <span className="w-14 h-1 bg-yellow-400 rounded"></span>
+              <span className="w-14 h-1 bg-orange-500 rounded"></span>
               <h2 className="text-3xl md:text-4xl font-bold text-gray-700">
                 Recent Blog Posts
               </h2>
-              <span className="w-14 h-1 bg-yellow-400 rounded"></span>
+              <span className="w-14 h-1 bg-orange-500 rounded"></span>
             </div>
             <p className="text-gray-500 mt-2">
               Necessitatibus eius consequatur ex aliquid fuga eum quidem sint consectetur velit
@@ -94,7 +94,7 @@ const BlogSlider = () => {
             blogs.length == 1 ?
 
               (
-                <div className=" md:w-30/100 px-5">
+                <div className=" md:w-30/100 ">
                   <BlogCard post={blogs[0]} ></BlogCard>
                 </div>
 

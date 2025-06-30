@@ -15,7 +15,7 @@ export const DashboardBanner = () => {
             title: "Do you want to delete it?",
             showCancelButton: true,
             confirmButtonText: "Delete",
-            confirmButtonColor:'#FF0000'
+            confirmButtonColor: '#FF0000'
 
         }).then((result) => {
             /* Read more about isConfirmed, isDenied below */
@@ -32,54 +32,57 @@ export const DashboardBanner = () => {
 
 
                     })
-                    .catch((error)=> Swal.fire("Something Wrong", error.message, "error"))
+                    .catch((error) => Swal.fire("Something Wrong", error.message, "error"))
 
 
 
 
-                
+
             }
         });
     }
     return (
-        <div className='space-y-5 w-full'>
+        <div className='space-y-1 w-full'>
             <div>
                 <h1 className='text-center md:text-5xl text-3xl font-bold text-gray-800 underline'>Banners</h1>
-              
+
             </div>
 
             <br />
+            <section className='space-y-4 px-5'>
+                <div className='flex max-sm:justify-center max-sm:items-center '>
+                    <label htmlFor="uploadBanner" className='btn text-base font-semibold hover:bg-orange-500 bg-orange-500 rounded-md text-white '>
+                        Upload Banners <FontAwesomeIcon icon={faPlus} ></FontAwesomeIcon>
+                    </label>
+
+                </div>
+
+                <section className='flex max-sm:flex-col items-center md:flex-wrap md:space-x-5'>
+                    {
+                        banners && banners.map((item, index) => {
+                            return (
+                                <div key={index} className="group relative w-[300px] h-[200px] overflow-hidden shadow-lg  space-y-2 rounded-lg">
+                                    <img
+                                        src={`${item?.imageUrl[0] || `https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png`}`}
+                                        alt=""
+                                        loading="lazy"
+                                        className="w-full h-full rounded-lg max-sm:w-full object-cover hover:scale-105 transition-all duration-150 ease-in-out delay-110 cursor-pointer"
+                                    />
+                                    <div className="modal-action absolute right-2 rounded-full w-5 h-5 flex items-center justify-center bg-white -top-5" onClick={() => handleDelete(item._id)}>
+                                        {/* <label htmlFor="uploadLogo" ><FontAwesomeIcon icon={faXmark} size='lg' className='cursor-pointer' ></FontAwesomeIcon></label> */}
+                                        <FontAwesomeIcon icon={faXmark} size='lg' className='cursor-pointer' ></FontAwesomeIcon>
+                                    </div>
 
 
-            <div className='flex max-sm:justify-center max-sm:items-center '>
-                <label htmlFor="uploadBanner" className='btn text-base font-semibold hover:bg-blue-600 bg-blue-700 rounded-md text-gray-200 '>
-                    Upload Banners <FontAwesomeIcon icon={faPlus} ></FontAwesomeIcon>
-                </label>
-
-            </div>
-
-            <section className='flex max-sm:flex-col items-center md:flex-wrap md:space-x-5'>
-                {
-                    banners && banners.map((item, index) => {
-                        return (
-                            <div key={index} className="group relative w-[300px] h-[200px] overflow-hidden shadow-lg p-3 space-y-2 rounded-lg">
-                                <img
-                                    src={`${item?.imageUrl[0] || `https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png`}`}
-                                    alt=""
-                                    loading="lazy"
-                                    className="w-full h-full rounded-lg max-sm:w-full object-cover hover:scale-105 transition-all duration-150 ease-in-out delay-110 cursor-pointer"
-                                />
-                                <div className="modal-action absolute right-2 rounded-full w-5 h-5 flex items-center justify-center bg-white -top-5" onClick={()=>handleDelete(item._id)}>
-                                    {/* <label htmlFor="uploadLogo" ><FontAwesomeIcon icon={faXmark} size='lg' className='cursor-pointer' ></FontAwesomeIcon></label> */}
-                                    <FontAwesomeIcon icon={faXmark} size='lg' className='cursor-pointer' ></FontAwesomeIcon>
                                 </div>
-
-
-                            </div>
-                        )
-                    })
-                }
+                            )
+                        })
+                    }
+                </section>
             </section>
+
+
+
 
 
             <UploadBanner></UploadBanner>

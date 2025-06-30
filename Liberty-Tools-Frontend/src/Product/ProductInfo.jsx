@@ -43,7 +43,7 @@ export const ProductInfo = ({ item }) => {
 
             <div className="collapse collapse-plus border border-base-300">
                 <input type="checkbox" />
-                <div className="collapse-title font-semibold text-yellow-600  text-lg">Documents</div>
+                <div className="collapse-title font-semibold text-orange-500  text-lg">Documents</div>
                 {
                     item?.pdf ?
 

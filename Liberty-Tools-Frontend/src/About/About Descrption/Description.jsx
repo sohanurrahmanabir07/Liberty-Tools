@@ -11,22 +11,22 @@ import { FaWarehouse, FaBoxes, FaTruckLoading, FaTools } from "react-icons/fa";
 export const Description = () => {
     const warehouseFeatures = [
         {
-            icon: <FaWarehouse className="text-yellow-500 text-3xl" />,
+            icon: <FaWarehouse className="text-orange-500 text-3xl" />,
             title: "Spacious Warehouse",
             desc: "Our modern warehouse ensures safe and organized storage for all tools and power products, enabling quick access and efficient handling.",
         },
         {
-            icon: <FaBoxes className="text-yellow-500 text-3xl" />,
+            icon: <FaBoxes className="text-orange-500 text-3xl" />,
             title: "Wide Product Range",
             desc: "We stock a diverse inventory of professional power tools, accessories, and equipment, ready to meet every project need.",
         },
         {
-            icon: <FaTruckLoading className="text-yellow-500 text-3xl" />,
+            icon: <FaTruckLoading className="text-orange-500 text-3xl" />,
             title: "Fast Dispatch",
             desc: "Our logistics team ensures rapid and reliable delivery from our warehouse to your doorstep, maintaining product integrity at every step.",
         },
         {
-            icon: <FaTools className="text-yellow-500 text-3xl" />,
+            icon: <FaTools className="text-orange-500 text-3xl" />,
             title: "Quality Assurance",
             desc: "Each tool is checked and maintained by our staff, guaranteeing you receive only the best products for your tasks.",
         },

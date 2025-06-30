@@ -99,7 +99,7 @@ export const Category = ({ url }) => {
       <div className='max-w-[1340px] mx-auto space-y-5'>
 
         <section className='mx-auto my-5'>
-          <div className='w-full h-[50px] bg-yellow-400 rounded-lg flex items-center justify-center md:my-10 my-5'>
+          <div className='w-full h-[50px] bg-orange-500 rounded-lg flex items-center justify-center md:my-10 my-5'>
             <div className='w-3/4 relative md:w-2/5'>
               <div className='px-2 rounded-sm border-2 border-white flex items-center'>
                 <FontAwesomeIcon icon={faMagnifyingGlass} className='text-white' size='lg' ></FontAwesomeIcon>

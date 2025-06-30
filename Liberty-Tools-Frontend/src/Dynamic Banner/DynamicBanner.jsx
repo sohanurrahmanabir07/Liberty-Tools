@@ -16,7 +16,7 @@ export const DynamicBanner = ({ item }) => {
             <div className='relative overflow-hidden shadow-sm shadow-gray-400 -mt-20'>
 
               {/* <img loading="lazy" src={item?.imageUrl || banner} className='brightness-50 w-full ' alt="" /> */}
-              <img loading="lazy" src={ item?.bannerImgUrl[0]} className='brightness-50 w-full max-sm:h-[300px] ' alt="" />
+              <img loading="lazy" src={ item?.bannerImgUrl[0]} className='brightness-50 w-full max-sm:h-[200px] ' alt="" />
               <div className='absolute  bottom-5 left-5'>
                 <p className='font-semibold text-3xl text-gray-300 text-shadow-xl text-shadow-yellow-600'>
                   {capitalizeWords(item?.name)}
