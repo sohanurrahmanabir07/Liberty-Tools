@@ -29,14 +29,14 @@ export const SideNavbar = ({ categories }) => {
 
                     {/* FAQ-Style Categories Section */}
                     <div className="cursor-pointer  ">
-                        <div className="flex space-x-2  items-center px-3 py-2 font-bold rounded-md btn btn-soft text-blue-700" onClick={() => setCategoriesOpen(!isCategoriesOpen)}>
+                        <div className="flex space-x-2  items-center px-3 py-2 font-bold rounded-md btn btn-soft text-orange-500" onClick={() => setCategoriesOpen(!isCategoriesOpen)}>
                             <span>Products</span>
                             <FontAwesomeIcon icon={faChevronDown} className={`transition-transform duration-300 ${isCategoriesOpen ? "rotate-180" : ""}`} />
                         </div>
-                        <div className={`w-full flex-col bg-blue-50 rounded-lg  p-3 shadow-lg text-blue-700 mt-3  ${isCategoriesOpen ? `block` : `hidden`}  top-full`}>
+                        <div className={`w-full flex-col bg-blue-50 rounded-lg  p-3 shadow-lg text-orange-500 mt-3  ${isCategoriesOpen ? `block` : `hidden`}  top-full`}>
 
                             <div className="flex flex-row-reverse">
-                                <div className="text-xs  text-blue-700 underline" onClick={() => { navigate('/all-products'); document.getElementById('navbar-drawer').checked = false; }}>
+                                <div className="text-xs  text-orange-500 underline" onClick={() => { navigate('/all-products'); document.getElementById('navbar-drawer').checked = false; }}>
                                     View All Products
                                 </div>
                             </div>
@@ -56,7 +56,7 @@ export const SideNavbar = ({ categories }) => {
 
                     {/* FAQ-Style About Section */}
                     <li className="cursor-pointer">
-                        <div className="flex space-x-2  items-center px-3 py-2 font-bold rounded-md btn btn-soft text-blue-700" onClick={() => { navigate('/about'); document.getElementById("navbar-drawer").checked = false; }}>
+                        <div className="flex space-x-2  items-center px-3 py-2 font-bold rounded-md btn btn-soft text-orange-500" onClick={() => { navigate('/about'); document.getElementById("navbar-drawer").checked = false; }}>
                             <span>About</span>
 
                         </div>
@@ -64,15 +64,15 @@ export const SideNavbar = ({ categories }) => {
                     </li>
 
                     {/* Clickable Items */}
-                    <li className="cursor-pointer px-3 py-2 font-bold rounded-md btn btn-soft text-blue-700 hover:bg-blue-600" onClick={() => { navigate('/services'); document.getElementById("navbar-drawer").checked = false; }} >
+                    <li className="cursor-pointer px-3 py-2 font-bold rounded-md btn btn-soft text-orange-500 hover:bg-blue-600" onClick={() => { navigate('/services'); document.getElementById("navbar-drawer").checked = false; }} >
                         Services
                     </li>
 
-                    <li className="cursor-pointer px-3 py-2 font-bold rounded-md btn btn-soft text-blue-700 hover:bg-blue-600" onClick={() => { navigate('/blog'); document.getElementById("navbar-drawer").checked = false; }} >
+                    <li className="cursor-pointer px-3 py-2 font-bold rounded-md btn btn-soft text-orange-500 hover:bg-blue-600" onClick={() => { navigate('/blog'); document.getElementById("navbar-drawer").checked = false; }} >
                         Blog
                     </li>
 
-                    <li onClick={() => { navigate('/contact'); document.getElementById("navbar-drawer").checked = false; }} className="cursor-pointer px-3 py-2 font-bold rounded-md btn btn-soft text-blue-700 hover:bg-blue-600" >
+                    <li onClick={() => { navigate('/contact'); document.getElementById("navbar-drawer").checked = false; }} className="cursor-pointer px-3 py-2 font-bold rounded-md btn btn-soft text-orange-500 hover:bg-blue-600" >
                         Contact
 
 
@@ -86,7 +86,7 @@ export const SideNavbar = ({ categories }) => {
                             <li onClick={() => {
                                 navigate('/dashboard');
                                 document.getElementById("navbar-drawer").checked = false;
-                            }} className="cursor-pointer px-3 py-2 font-bold rounded-md btn btn-soft text-blue-700 hover:bg-blue-600" >
+                            }} className="cursor-pointer px-3 py-2 font-bold rounded-md btn btn-soft text-orange-500 hover:bg-blue-600" >
                                 Dashboard
                             </li>
                         )

@@ -103,9 +103,7 @@ export const ServicesHome = () => {
 
     }
 
-    const handleUpdate = () => {
 
-    }
 
 
     return (
@@ -126,7 +124,7 @@ export const ServicesHome = () => {
                         location.pathname.startsWith('/dashboard') &&
                         (
                             <>
-                                <label htmlFor="AddService" className='btn my-5 text-base font-semibold hover:bg-orange-500 bg-orange-500 rounded-md text-white  '>
+                                <label htmlFor="AddService" className='btn my-5 text-base font-semibold hover:bg-orange-400 bg-orange-500 rounded-md text-white  '>
                                     Add New Services <FontAwesomeIcon icon={faPlus} ></FontAwesomeIcon>
                                 </label>
 

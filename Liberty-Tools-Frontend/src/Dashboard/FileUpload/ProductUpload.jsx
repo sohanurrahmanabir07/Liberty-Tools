@@ -135,7 +135,7 @@ export const ProductUpload = () => {
         <div>
             <input type="checkbox" id="my_modal_4" className="modal-toggle" />
             <div className="modal">
-                <div className="modal-box md:max-w-[700px] relative">
+                <div className="modal-box  md:max-w-[700px] md:h-auto overflow-y-auto  relative">
                     <label htmlFor="my_modal_4" className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</label>
 
                     <section className='space-y-4'>

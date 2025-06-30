@@ -82,9 +82,9 @@ export const Category = ({ url }) => {
 
 
   }
-  useEffect(() => {
-    window.scrollTo(0, 0); // Resets scroll position
-  }, []);
+  // useEffect(() => {
+  //   window.scrollTo(0, 0); // Resets scroll position
+  // }, []);
 
 
   const filtered_products = filterProducts && filterProducts.filter((item) => item.model.toLowerCase().includes(search.toLowerCase()))

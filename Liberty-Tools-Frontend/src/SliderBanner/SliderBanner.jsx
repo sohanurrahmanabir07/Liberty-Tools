@@ -35,6 +35,8 @@ export const SliderBanner = () => {
         slidesToScroll: 1,
         prevArrow: <PrevArrow />,
         nextArrow: <NextArrow />,
+        autoplay: true,
+        autoplaySpeed: 3500,
     };
     return (
         <div className="relative">
@@ -56,7 +58,7 @@ export const SliderBanner = () => {
 
                                         return (
                                             <div className="w-full  md:h-screen h-[500px] overflow-hidden " key={index}>
-                                                <img src={item.imageUrl[0]} className="w-full brightness-40 bg-cover md:h-screen" alt="" />
+                                                <img src={item.imageUrl[0]} className="w-full brightness-40 bg-cover  h-full md:h-screen" alt="" />
                                             </div>
                                         )
                                     })
@@ -65,8 +67,8 @@ export const SliderBanner = () => {
 
                                     [1, 2].map((item, index) => {
                                         return (
-                                            <div className="w-full  md:h-screen h-[450px] overflow-hidden " key={index}>
-                                                <img src={banners[0].imageUrl[0]} className="w-full brightness-40 bg-cover h-full md:h-screen" alt="" />
+                                            <div className="w-full  md:h-screen h-[450px]  overflow-hidden " key={index}>
+                                                <img src={banners[0].imageUrl[0]} className="w-full  brightness-50 object-cover h-full " alt="" />
                                             </div>
                                         )
                                     })
@@ -86,8 +88,8 @@ export const SliderBanner = () => {
 
             <div className="text-center w-3/4  md:w-[650px] space-y-10 absolute top-1/2 left-1/2 transform -translate-x-1/2  -translate-y-1/2">
                 <h1 className="md:text-6xl text-3xl font-bold text-white">Welcome to Liberty <br /> Equipment</h1>
-                <p className="font-semibold text-white">Discover innovative, high-quality tools and equipment designed to enhance efficiency and productivity. At Liberty Equipment, we are committed to providing reliable solutions for all your industrial needs.</p>
-                <button className="font-semibold text-white hover:bg-orange-500 transition-all duration-300 cursor-pointer px-10 py-3 rounded-l-full rounded-r-full border-2 border-orange-500">Get Started</button>
+                <p className="md:font-semibold text-gray-300  text-sm md:text-lg  ">Discover innovative, high-quality tools and equipment designed to enhance efficiency and productivity. At Liberty Equipment, we are committed to providing reliable solutions for all your industrial needs.</p>
+                <button className="font-semibold text-white hover:bg-orange-400 transition-all duration-300 cursor-pointer px-10 py-3 rounded-l-full rounded-r-full border-2 border-orange-500">Get Started</button>
             </div>
         </div>
 

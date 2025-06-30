@@ -77,7 +77,7 @@ export const Navbar = ({ products, categories }) => {
 
                         <div className="flex items-center justify-center  space-x-4">
                             <div className="dropdown">
-                                <label htmlFor="navbar-drawer" className={`drawer-button lg:hidden  text-xl cursor-pointer`}>☰</label>
+                                <label htmlFor="navbar-drawer" className={`drawer-button lg:hidden text-orange-500  text-xl cursor-pointer`}>☰</label>
                             </div>
 
                             <div className='w-25 cursor-pointer block' onClick={() => navigate('/')}>

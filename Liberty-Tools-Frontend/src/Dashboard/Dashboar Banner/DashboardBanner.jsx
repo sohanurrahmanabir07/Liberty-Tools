@@ -51,7 +51,7 @@ export const DashboardBanner = () => {
             <br />
             <section className='space-y-4 px-5'>
                 <div className='flex max-sm:justify-center max-sm:items-center '>
-                    <label htmlFor="uploadBanner" className='btn text-base font-semibold hover:bg-orange-500 bg-orange-500 rounded-md text-white '>
+                    <label htmlFor="uploadBanner" className='btn text-base font-semibold hover:bg-orange-400 bg-orange-500 rounded-md text-white '>
                         Upload Banners <FontAwesomeIcon icon={faPlus} ></FontAwesomeIcon>
                     </label>
 

@@ -1,5 +1,5 @@
 const express = require('express')
-const { getProducts, addProduct, deleteProduct, getCategories, addCategory, deleteCategory, updateProduct, updateCategory, downloadPdfFiles, getLogo, pdfUpload, uploadBanner, getBanners, deleteBanner, AddBlog, getBlogs, deleteBlog, addService, getServices, updateService, deleteService } = require('../Controller/Controller')
+const { getProducts, addProduct, deleteProduct, getCategories, addCategory, deleteCategory, updateProduct, updateCategory, downloadPdfFiles, getLogo, pdfUpload, uploadBanner, getBanners, deleteBanner, AddBlog, getBlogs, deleteBlog, addService, getServices, updateService, deleteService, businessProducts } = require('../Controller/Controller')
 const { register, login } = require('../Controller/AuthController')
 const router = express.Router()
 const multer = require('multer')
@@ -21,6 +21,7 @@ router.get('/getBlogs', getBlogs)
 router.get('/download/:fileId', downloadPdfFiles)
 router.get('/getQueries', getQueries)
 router.get('/getServices',getServices)
+router.get('/getBusinessProducts',businessProducts)
 
 // ====== POST Routes ======
 router.post('/register', register)

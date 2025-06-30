@@ -61,7 +61,7 @@ export const Quote = () => {
                     className="space-y-7 md:w-1/2"
                     {...(isMdScreen ? { 'data-aos': "fade-right", 'data-aos-duration': "2000" } : {})}
                 >
-                    <h1 className='font-bold md:text-5xl text-2xl '>Extensive Selection of Power Tools & Industrial Machinery.</h1>
+                    <h1 className='font-bold md:text-5xl text-orange-500 text-2xl '>Extensive Selection of Power Tools & Industrial Machinery.</h1>
                     <p>Discover a vast inventory of top-brand power tools and heavy-duty industrial machinery. From drills and saws to lathes and mills, we have the equipment you need to tackle any project.
                         <br /><br />
                         Outfit your professional workshop or industrial facility with our extensive selection of high-quality power tools and machinery. We cater to the demands of professionals in various industries.</p>
@@ -71,7 +71,7 @@ export const Quote = () => {
                     className='md:w-1/2 space-y-5'
                     {...(isMdScreen ? { 'data-aos': "fade-left", 'data-aos-duration': "1500" } : {})}
                 >
-                    <h3 className="font-bold text-xl mb-1">Get A Quote</h3>
+                    <h3 className="font-bold text-xl mb-1">Get A <span className='text-orange-500'>Quote</span></h3>
                     <p className="mb-6 text-sm text-gray-600">
                         Tell us about your requirements, and we'll provide a tailored quote.
                     </p>
@@ -125,7 +125,7 @@ export const Quote = () => {
                         type="submit"
                         disabled={!contact.name || !contact.email || !contact.subject || !contact.description}
                         onClick={handleSubmit}
-                        className={` data-aos:fade-up'   ${!contact.name || !contact.email || !contact.subject || !contact.description ? `bg-gray-400 cursor-not-allowed ` : `bg-orange-500 hover:bg-orange-500`}  text-white text-lg font-semibold rounded-lg p-3 mt-2 transition`}
+                        className={` data-aos:fade-up'   ${!contact.name || !contact.email || !contact.subject || !contact.description ? `bg-gray-400 cursor-not-allowed ` : `bg-orange-500 hover:bg-orange-400`}  text-white text-lg font-semibold rounded-lg p-3 mt-2 transition`}
                     >
                         Send Message
                     </button>

@@ -139,7 +139,7 @@ const ContactSection = () => {
                             type="submit"
                             disabled={!contact.name && !contact.email && !contact.subject && !contact.description}
                             onClick={handleSubmit}
-                            className={`  ${!contact.name || !contact.email || !contact.subject || !contact.description ? `bg-gray-400 cursor-not-allowed ` : `bg-orange-500 hover:bg-orange-500`}  text-white text-lg font-semibold rounded-full py-3 mt-2 transition`}
+                            className={`  ${!contact.name || !contact.email || !contact.subject || !contact.description ? `bg-gray-400 cursor-not-allowed ` : `bg-orange-500 hover:bg-orange-400`}  text-white text-lg font-semibold rounded-full py-3 mt-2 transition`}
                         >
                             Send Message
                         </button>

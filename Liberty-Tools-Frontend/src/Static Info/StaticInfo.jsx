@@ -1,5 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import image from "../assets/img/Liberty/bg/sbg4.png";
+import image from "../assets/img/Liberty/cordless/Cordless_Heat_Gun-removebg-preview.png"
+
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 import {

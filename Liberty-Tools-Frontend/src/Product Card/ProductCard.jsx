@@ -65,7 +65,7 @@ export const ProductCard = ({ item }) => {
   }
 
   return (
-    <div className='md:p-3'>
+    <div className='w-[250px]'>
       <div className='border-2 border-orange-500 group relative flex items-center justify-center font-semibold p-5 cursor-pointer rounded-xl'>
         <div onClick={() => navigate(`/products/${item?.model}`)} className='relative' >
           <img loading="lazy" src={item?.imageUrl[0]} className='w-[250px] h-[200px] rounded-xl ' alt="" />

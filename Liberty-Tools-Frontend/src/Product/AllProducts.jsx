@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react'
 import Cover from "../assets/img/Cordless tools banner.jpg"
-
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faFilter, faMagnifyingGlass, faMinus, faPlus } from '@fortawesome/free-solid-svg-icons'
@@ -8,7 +9,7 @@ import { useLocation, useOutletContext } from 'react-router'
 import { capitalizeWords } from '../Functions/functions'
 import { ProductUpload } from '../Dashboard/FileUpload/ProductUpload'
 import { ProductCard } from '../Product Card/ProductCard'
-
+import pdf from "../../public/pdf/NT - 111 FS.pdf"
 import banner from "../assets/img/Liberty/bg/All Products Banner.jpg"
 export const AllProducts = () => {
     const [limit, setLimit] = useState(6)
@@ -18,6 +19,7 @@ export const AllProducts = () => {
     const [search, setSearch] = useState('')
     const [showFilter, setShowFilter] = useState(false)
     const location = useLocation()
+    const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         if (products != null) {
@@ -26,7 +28,14 @@ export const AllProducts = () => {
     }, [products]);
 
 
-
+    useEffect(() => {
+        setTimeout(() => {
+            setLoading(false)
+        }, 200);
+        AOS.init({
+            disable: 'mobile'
+        });
+    }, [])
 
 
     useEffect(() => {
@@ -66,13 +75,23 @@ export const AllProducts = () => {
 
     }
 
+
+
     return (
-        <section>
+
+
+        <section  {
+            ...(
+                !location.pathname.startsWith('/dashboard') ? {'data-aos':'fade-up' , 'data-aos-duration':'1000'}
+                : {}
+            )
+
+        }   >
             <div className=' overflow-hidden -mt-20  bg-amber-700 '>
                 <img loading="lazy" src={banner || ``} className='  md:w-full max-sm:h-[220px] brightness-50' alt="" />
             </div>
-            <div className={`max-w-[1340px] ${!location.pathname.startsWith('/dashboard')? 'mx-auto' : 'px-3' }  space-y-5 bg- mb-20`}>
-            
+            <div className={`max-w-[1340px] ${!location.pathname.startsWith('/dashboard') ? 'mx-auto' : 'px-3'}  space-y-5 bg- mb-20`}>
+
 
 
 
@@ -93,7 +112,7 @@ export const AllProducts = () => {
                     location.pathname.startsWith('/dashboard') &&
                     (
                         <div className='flex max-sm:justify-center max-sm:items-center '>
-                            <label htmlFor="my_modal_4" className='btn text-base font-semibold hover:bg-orange-500 bg-orange-500 rounded-md text-white  '>
+                            <label htmlFor="my_modal_4" className='btn text-base font-semibold hover:bg-orange-400 bg-orange-500 rounded-md text-white  '>
                                 Add Products <FontAwesomeIcon icon={faPlus} ></FontAwesomeIcon>
                             </label>
 
@@ -104,7 +123,7 @@ export const AllProducts = () => {
                 }
 
 
-                <section className='flex justify-center max-sm:items-center  max-sm:flex-col  max-sm:space-y-3 md:space-x-3  '>
+                <section className={`flex justify-center max-sm:items-center  max-sm:flex-col  max-sm:space-y-3 md:space-x-3  `}>
                     <div className='max-sm:hidden'>
                         <section className='bg-gray-200 w-[220px] space-y-3 p-4 rounded-lg shadow-lg '>
 
@@ -128,13 +147,16 @@ export const AllProducts = () => {
 
 
                     <section className='space-y-2 md:w-4/5'>
-                        <div className='flex flex-row-reverse md:hidden'  >
-                            <div>
-                                <div onClick={() => setShowFilter(!showFilter)} className="dropdown dropdown-end">
-                                    <div tabIndex={0} role="button" className="btn m-1 w-[150px] rounded-sm">Filter <FontAwesomeIcon icon={faFilter} ></FontAwesomeIcon></div>
+                        <div className='flex justify-between md:hidden'  >
 
-                                </div>
+                            {/* <div>
+                                <a href="../../public/pdf/NT - 111 FS.pdf" className='btn m-1 w-[150px] text-white bg-orange-500  rounded-sm'>Catelog</a>
+                            </div> */}
+                            <div onClick={() => setShowFilter(!showFilter)} className="dropdown dropdown-end">
+                                <div tabIndex={0} role="button" className="btn text-white bg-orange-500  m-1 w-[150px] rounded-sm">Filter <FontAwesomeIcon icon={faFilter} ></FontAwesomeIcon></div>
+
                             </div>
+
 
 
                         </div>
@@ -167,15 +189,21 @@ export const AllProducts = () => {
                                 filterProducts.length > 0 ?
 
                                     (
-                                        <section className='space-y-5 min-h-[600px]'>
-                                            <div className='grid grid-cols-1 md:grid-cols-3  md:gap-4 gap-3'>
+                                        <section className=' min-h-[600px] space-y-5'>
+
+                                            {/* <div className='max-sm:hidden'>
+                                                <a href="../../public/pdf/NT - 111 FS.pdf" className='btn m-1 w-[150px] text-white bg-orange-500  rounded-sm'>Catelog</a>
+                                            </div> */}
+                                            <div className={`grid grid-cols-1 ${location.pathname.startsWith('/dashboard') ? 'md:grid-cols-3 ' : 'md:grid-cols-4'} gap-3`}>
 
 
 
                                                 {filterProducts.slice(0, limit).map((item, index) => {
                                                     return (
+                                                 
+                                                            <ProductCard key={index} item={item} ></ProductCard>
+                                                 
 
-                                                        <ProductCard key={index} item={item} ></ProductCard>
 
                                                     )
                                                 })

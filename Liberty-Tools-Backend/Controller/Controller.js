@@ -12,7 +12,7 @@ const { Services } = require("../Model/services")
 const getProducts = async (req, res) => {
 
     try {
-        const data = await Products.find({}).sort({createdAt:-1}).lean()
+        const data = await Products.find({}).sort({ createdAt: -1 }).lean()
         res.send(data)
     } catch (error) {
         res.send({
@@ -55,6 +55,47 @@ const getCategories = async (req, res) => {
         res.send({
             "message": error.message
         })
+    }
+}
+
+const businessProducts = async (req, res) => {
+    try {
+        // This requires MongoDB 4.4+ for $lookup with pipeline and $mergeObjects
+
+        const result = await Categories.aggregate([
+            { $sort: { createdAt: 1 } }, // oldest categories first
+            {
+                $lookup: {
+                    from: "products",
+                    let: { categoryName: "$name", categoryCreatedAt: "$createdAt" },
+                    pipeline: [
+                        { $match: { $expr: { $eq: ["$category", "$$categoryName"] } } },
+                        { $sort: { createdAt: -1 } }, // newest product first
+                        { $limit: 1 },
+                        { $addFields: { categoryCreatedAt: "$$categoryCreatedAt" } }
+                    ],
+                    as: "latestProduct"
+                }
+            },
+            { $unwind: "$latestProduct" },
+            // Optionally project to flatten the structure
+            {
+                $replaceRoot: {
+                    newRoot: {
+                        $mergeObjects: ["$latestProduct", { categoryCreatedAt: "$createdAt" }]
+                    }
+                }
+            },
+            { $sort: { categoryCreatedAt: 1 } } // ensure order by category oldest first
+        ]);
+
+        if(result){
+            res.send({
+                data:result
+            })
+        }
+    } catch (error) {
+        res.status(500).send({ message: error.message });
     }
 }
 
@@ -257,18 +298,25 @@ const UploadBlog = () => {
 
 const updateProduct = async (req, res) => {
     try {
+
+        
         const files = req.files || {};
         const infoString = req.body.info;
+
+
         const existingImages = req.body.existingImages || [];
-        const existingPdfsRaw = req.body.existingPdfs || '[]';
-        const removedPdfsRaw = req.body.removedPdfs || '[]';
+        const existingPdfsRaw = req.body.existingPdfs || [];
+        const removedPdfsRaw = req.body.removedPdfs || [];
+
 
         if (!infoString) {
             return res.status(400).send({ message: "Missing info data" });
         }
 
         const info = JSON.parse(infoString);
-
+        console.log('existing images',existingPdfsRaw);
+        
+        
         // ----------- Images -----------
         const imageUrl = [];
         if (typeof existingImages === 'string') {
@@ -326,6 +374,7 @@ const updateProduct = async (req, res) => {
         }
 
         // ----------- Update -----------
+
         const updatedProduct = await Products.findByIdAndUpdate(
             req.params.id,
             info,
@@ -784,5 +833,5 @@ const deleteService = async (req, res) => {
 
 
 module.exports = {
-    deleteService,updateService, getServices, addService, deleteBlog, getBlogs, AddBlog, deleteBanner, uploadBanner, getBanners, pdfUpload, getLogo, downloadPdfFiles, getProducts, addProduct, deleteProduct, getCategories, addCategory, deleteCategory, updateProduct, updateCategory
+    businessProducts,deleteService, updateService, getServices, addService, deleteBlog, getBlogs, AddBlog, deleteBanner, uploadBanner, getBanners, pdfUpload, getLogo, downloadPdfFiles, getProducts, addProduct, deleteProduct, getCategories, addCategory, deleteCategory, updateProduct, updateCategory
 }

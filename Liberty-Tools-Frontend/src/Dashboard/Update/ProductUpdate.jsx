@@ -14,7 +14,8 @@ export const ProductUpdate = ({ item }) => {
     const [model, setModel] = useState('');
     const [description, setDescription] = useState('');
     const [category, setCategory] = useState('');
-    const [specs, setSpecs] = useState([]);
+    const [parameter, setParameter] = useState([{ key: '', value: '' }]);
+    const [packingData, setPackingData] = useState([{ key: '', value: '' }]);
     const [loading, setLoading] = useState(false);
 
     const { setCategories, categories, products, setProducts } = useOutletContext();
@@ -29,14 +30,25 @@ export const ProductUpdate = ({ item }) => {
             setDescription(item.description || '');
             setCategory(item.category || '');
 
-            // Tech specs format
-            const formattedSpecs = Array.isArray(item.techSpec)
-                ? item.techSpec.map(obj => {
-                    const key = Object.keys(obj)[0];
-                    return { key, value: obj[key] };
-                })
-                : [];
-            setSpecs(formattedSpecs);
+            // Parameter format: [{ key: '', value: '' }]
+            const formattedParameter =
+                Array.isArray(item.parameter) && item.parameter.length > 0
+                    ? item.parameter.map(obj => {
+                        const key = Object.keys(obj)[0];
+                        return { key, value: obj[key] };
+                    })
+                    : [{ key: '', value: '' }];
+            setParameter(formattedParameter);
+
+            // PackingData format: [{ key: '', value: '' }]
+            const formattedPackingData =
+                Array.isArray(item.packingData) && item.packingData.length > 0
+                    ? item.packingData.map(obj => {
+                        const key = Object.keys(obj)[0];
+                        return { key, value: obj[key] };
+                    })
+                    : [{ key: '', value: '' }];
+            setPackingData(formattedPackingData);
 
             // PDFs from db: { dataSheet: "url", userManual: "url" }
             const dbPdfs = item.pdf && typeof item.pdf === 'object' && !Array.isArray(item.pdf)
@@ -54,14 +66,23 @@ export const ProductUpdate = ({ item }) => {
     };
     const removeImage = (index) => setImages(prev => prev.filter((_, i) => i !== index));
 
-    // ----------- Specs -----------
-    const handleSpecChange = (index, field, value) => {
-        const updatedSpecs = [...specs];
-        updatedSpecs[index][field] = value;
-        setSpecs(updatedSpecs);
+    // ----------- Parameter -----------
+    const handleParameter = (index, field, value) => {
+        const newParameter = [...parameter];
+        newParameter[index][field] = value;
+        setParameter(newParameter);
     };
-    const addSpecField = () => setSpecs(prev => [...prev, { key: '', value: '' }]);
-    const removeSpecField = (index) => setSpecs(prev => prev.filter((_, i) => i !== index));
+    const addParameterField = () => setParameter(prev => [...prev, { key: '', value: '' }]);
+    const removeParameterField = (index) => setParameter(prev => prev.filter((_, i) => i !== index));
+
+    // ----------- Packing Data -----------
+    const handlePackingData = (index, field, value) => {
+        const newPackingData = [...packingData];
+        newPackingData[index][field] = value;
+        setPackingData(newPackingData);
+    };
+    const addPackingDataField = () => setPackingData(prev => [...prev, { key: '', value: '' }]);
+    const removePackingDataField = (index) => setPackingData(prev => prev.filter((_, i) => i !== index));
 
     // ----------- PDFs -----------
     const handlePdfFieldChange = (idx, field, value) => {
@@ -104,19 +125,33 @@ export const ProductUpdate = ({ item }) => {
             formData.append('existingPdfs', JSON.stringify(existingPdfs));
         }
 
-        // Tech specs
-        const transformedSpecs = specs
+        // Parameter and PackingData
+        const transformedParameter = parameter
             .filter(({ key, value }) => key && value)
             .map(({ key, value }) => ({ [key]: value }));
+
+        const transformedPackingData = packingData
+            .filter(({ key, value }) => key && value)
+            .map(({ key, value }) => ({ [key]: value }));
+
+        // PDFs for info
+        const pdfInfo = [
+            ...existingPdfs.map(pdf => ({ [pdf.key]: pdf.url })),
+            ...pdfs.filter(pdf => pdf.key).map(pdf => ({ [pdf.key]: "" }))
+        ];
 
         const info = {
             name,
             model,
             description,
             category,
-            techSpec: transformedSpecs
+            parameter: transformedParameter,
+            packingData: transformedPackingData,
+            pdf: Object.assign({}, ...pdfInfo)
         };
 
+        console.log('info',info);
+        
         formData.append('info', JSON.stringify(info));
         setLoading(true);
 
@@ -151,7 +186,26 @@ export const ProductUpdate = ({ item }) => {
         setModel(item.model || '');
         setDescription(item.description || '');
         setCategory(item.category || '');
-        setSpecs(item.techSpec || []);
+
+        // Restore parameter and packingData
+        const formattedParameter =
+            Array.isArray(item.parameter) && item.parameter.length > 0
+                ? item.parameter.map(obj => {
+                    const key = Object.keys(obj)[0];
+                    return { key, value: obj[key] };
+                })
+                : [{ key: '', value: '' }];
+        setParameter(formattedParameter);
+
+        const formattedPackingData =
+            Array.isArray(item.packingData) && item.packingData.length > 0
+                ? item.packingData.map(obj => {
+                    const key = Object.keys(obj)[0];
+                    return { key, value: obj[key] };
+                })
+                : [{ key: '', value: '' }];
+        setPackingData(formattedPackingData);
+
         // Restore existing PDFs
         const dbPdfs = item.pdf && typeof item.pdf === 'object' && !Array.isArray(item.pdf)
             ? Object.entries(item.pdf).map(([key, url]) => ({ key, url }))
@@ -181,16 +235,54 @@ export const ProductUpdate = ({ item }) => {
                             ))}
                         </select>
 
-                        {/* Tech Specs */}
+                        {/* Parameter */}
                         <div className='space-y-2'>
-                            {specs.map((spec, i) => (
-                                <div key={i} className='flex space-x-2 items-center'>
-                                    <input value={spec.key} onChange={(e) => handleSpecChange(i, 'key', e.target.value)} className='border p-2 w-1/2' placeholder='Spec Key' />
-                                    <input value={spec.value} onChange={(e) => handleSpecChange(i, 'value', e.target.value)} className='border p-2 w-1/2' placeholder='Spec Value' />
-                                    <button type="button" onClick={() => removeSpecField(i)} className='btn btn-sm btn-error'>−</button>
+                            <p>Add <span className='font-semibold'>Parameter</span> Info:</p>
+                            {parameter.map((spec, index) => (
+                                <div key={index} className='flex space-x-3 items-center'>
+                                    <input
+                                        type="text"
+                                        value={spec.key}
+                                        onChange={(e) => handleParameter(index, 'key', e.target.value)}
+                                        className='border-2 w-1/2 border-gray-300 p-2'
+                                        placeholder='Spec name'
+                                    />
+                                    <input
+                                        type="text"
+                                        value={spec.value}
+                                        onChange={(e) => handleParameter(index, 'value', e.target.value)}
+                                        className='border-2 w-1/2 border-gray-300 p-2'
+                                        placeholder='Spec value'
+                                    />
+                                    <button type='button' className='btn btn-sm btn-primary' onClick={addParameterField}>+</button>
+                                    <button type='button' className='btn btn-sm btn-error' onClick={() => removeParameterField(index)}>−</button>
                                 </div>
                             ))}
-                            <button type="button" className='btn btn-sm btn-primary' onClick={addSpecField}>+ Add Spec</button>
+                        </div>
+
+                        {/* Packing Data */}
+                        <div className='space-y-2'>
+                            <p>Add <span className='font-semibold'>Packing Data</span> Info:</p>
+                            {packingData.map((spec, index) => (
+                                <div key={index} className='flex space-x-3 items-center'>
+                                    <input
+                                        type="text"
+                                        value={spec.key}
+                                        onChange={(e) => handlePackingData(index, 'key', e.target.value)}
+                                        className='border-2 w-1/2 border-gray-300 p-2'
+                                        placeholder='Packing data name'
+                                    />
+                                    <input
+                                        type="text"
+                                        value={spec.value}
+                                        onChange={(e) => handlePackingData(index, 'value', e.target.value)}
+                                        className='border-2 w-1/2 border-gray-300 p-2'
+                                        placeholder='Packing data value'
+                                    />
+                                    <button type='button' className='btn btn-sm btn-primary' onClick={addPackingDataField}>+</button>
+                                    <button type='button' className='btn btn-sm btn-error' onClick={() => removePackingDataField(index)}>−</button>
+                                </div>
+                            ))}
                         </div>
 
                         {/* Image Previews */}

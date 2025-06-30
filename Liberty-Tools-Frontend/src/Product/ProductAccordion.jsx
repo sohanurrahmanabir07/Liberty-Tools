@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import { useOutletContext } from "react-router-dom";
+import { InquiryModal } from "./Inquiry Modal/InquiryModal";
 
 const parameterData = [
   { label: "Voltage/Frequency:", value: "220–240V~50–60Hz" },
@@ -18,7 +19,7 @@ const packingData = [
 const AccordionSection = ({ title, open, onClick, children }) => {
   const contentRef = useRef(null);
   const [height, setHeight] = useState(0);
- 
+
   useEffect(() => {
     if (open) {
       setHeight(contentRef.current.scrollHeight);
@@ -71,10 +72,15 @@ const ParameterTable = ({ data }) => (
   </table>
 );
 
-const ProductAccordion = ({item}) => {
+const ProductAccordion = ({ item }) => {
   const [openSection, setOpenSection] = useState("parameter");
   const { products } = useOutletContext()
 
+  const handleModal = () => {
+    setTimeout(() => {
+      document.getElementById('inquiryModal').checked = true
+    }, 100);
+  }
   return (
     <div className="border border-gray-300 rounded-md max-w-2xl  bg-white">
       <AccordionSection
@@ -96,11 +102,14 @@ const ProductAccordion = ({item}) => {
         <ParameterTable data={item?.packingData} />
       </AccordionSection>
       <div className="py-8 flex justify-start px-5">
-        <button className="bg-orange-500 hover:bg-orange-600 text-white text-lg font-semibold rounded-full px-10 py-3 flex items-center gap-2 transition">
+        <button onClick={handleModal} className="bg-orange-500 hover:bg-orange-600 text-white text-lg font-semibold rounded-full px-10 py-3 flex items-center gap-2 transition">
           Send Inquiry <span className="text-xl">➔</span>
         </button>
       </div>
+      {item && (<InquiryModal item={item} ></InquiryModal>)}
     </div>
+
+
   );
 };
 
