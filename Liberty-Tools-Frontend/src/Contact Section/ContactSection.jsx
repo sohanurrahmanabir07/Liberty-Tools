@@ -58,14 +58,16 @@ const ContactSection = () => {
                         <FaMapMarkerAlt className="text-orange-500 text-5xl mb-2 border-2 border-dotted border-yellow-200 rounded-full p-2" />
                         <div className="text-lg font-semibold text-gray-700 mb-1">Address</div>
                         <div className="text-gray-500 text-center">
-                            A108 Adam Street, New York, NY 535022
+                        418 BROADWAY STE R
+                        ALBANY NEW YORK 12207
                         </div>
                     </div>
                     {/* Phone */}
                     <div className="bg-white rounded shadow p-8 flex flex-col items-center">
                         <FaPhoneAlt className="text-orange-500 text-5xl mb-2 border-2 border-dotted border-yellow-200 rounded-full p-2" />
                         <div className="text-lg font-semibold text-gray-700 mb-1">Call Us</div>
-                        <div className="text-gray-500 text-center">+1 3322 5228 27</div>
+                        <div className="text-gray-500 text-center"> +1 3322 5228 17
+                        </div>
                     </div>
                     {/* Email */}
                     <div className="bg-white rounded shadow p-8 flex flex-col items-center">

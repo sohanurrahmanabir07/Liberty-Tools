@@ -29,15 +29,17 @@ const Footer = () => {
               : (<div className='skeleton rounded-sm h-10'></div>)
             }
           </div>
-          <div className="mb-1">Address: A108 Adam Street, New York, NY 535022</div>
+          <div className="mb-1">Address: 418 BROADWAY STE R
+            ALBANY NEW YORK 122072</div>
           <div className="mb-1">Wyoming, United States</div>
           <div className="mb-1">
-            <span className="font-semibold">Phone:</span> +1-3322-5228-27
+            <span className="font-semibold">Phone:</span> +13322522817
+
           </div>
           <div className="mb-4">
             <span className="font-semibold">Email:</span>{" "}
-            <a  className="underline text-yellow-300">
-            info@libertytools.us
+            <a className="underline text-yellow-300">
+              info@libertytools.us
             </a>
           </div>
           {/* Social icons */}

@@ -13,9 +13,10 @@ const StorySection = () => {
 
     <section className="w-full flex flex-col max-w-[1340px] mx-auto items-center py-8 md:py-16 bg-white">
       <div className="w-full max-w-[1600px] px-4">
-        <h1 className="text-4xl md:text-5xl font-bold text-gray-700 mb-6 mt-2">
-          Consequatur eius et <br />
-          magnam
+        <h1 className="text-4xl md:text-5xl text-orange-500 font-bold mb-6 mt-2">
+        Our Journey<br />
+        <span className="text-xl text-black">From Startup to a Trusted Global Supplier</span>
+         
           <br />
           <br />
         </h1>
@@ -30,15 +31,15 @@ const StorySection = () => {
             </p>
             <ul className="mb-4 space-y-2">
               <li className="flex items-start gap-2 text-gray-600">
-                <FaCheckCircle className="text-orange-500 mt-1" />
+                <FaCheckCircle className="text-yellow-400 mt-1" />
                 <span>Launched our flagship cordless tool series, setting a new benchmark for reliability and innovation in the industry.</span>
               </li>
               <li className="flex items-start gap-2 text-gray-600">
-                <FaCheckCircle className="text-orange-500 mt-1" />
+                <FaCheckCircle className="text-yellow-400 mt-1" />
                 <span>Expanded our product line to include heat guns, electric sanders, rotary tools, and angle grinders, meeting the evolving needs of our customers.</span>
               </li>
               <li className="flex items-start gap-2 text-gray-600">
-                <FaCheckCircle className="text-orange-500 mt-1" />
+                <FaCheckCircle className="text-yellow-400 mt-1" />
                 <span>Established robust international logistics, allowing us to supply our products efficiently to clients around the world.</span>
               </li>
             </ul>
@@ -47,9 +48,9 @@ const StorySection = () => {
             </p>
             <a
               href="#"
-              className="flex items-center gap-2 text-lg text-gray-700 hover:text-orange-500 font-semibold transition"
+              className="flex items-center gap-2 text-lg text-gray-700 hover:text-yellow-400 font-semibold transition"
             >
-              <FaPlayCircle className="text-orange-500 text-2xl" />
+              <FaPlayCircle className="text-yellow-400 text-2xl" />
               Watch Video
             </a>
           </div>

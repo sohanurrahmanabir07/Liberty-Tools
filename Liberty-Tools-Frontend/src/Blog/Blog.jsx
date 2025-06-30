@@ -32,10 +32,10 @@ export const Blog = () => {
 
 
     }, [location.state, blogs])
-    useEffect(() => {
+    // useEffect(() => {
 
-        window.scroll(0, 0)
-    }, [])
+    //     window.scroll(0, 0)
+    // }, [])
 
     return (
         <div className='space-y-10' >

@@ -50,7 +50,7 @@ export const StaticInfo = ({ img }) => {
   return (
     <div className="py-10 px-5">
       <div className="flex max-sm:flex-col items-center md:space-x-10 justify-around max-w-[1340px] mx-auto space-y-5">
-        <img src={img || image} className={`  max-sm:w-full ${location.pathname=='/about'? `w-1/2  `: `w-1/3`}  rounded-xl " data-aos="fade-right`} data-aos-duration="2000" alt="" />
+        <img src={img || image} data-aos="fade-right" data-aos-duration="2000" className={`  max-sm:w-full ${location.pathname=='/about'? `w-1/2  `: `w-1/3`}  rounded-xl " data-aos="fade-right`}  alt="" />
 
         {
           location.pathname == '/about' ?
