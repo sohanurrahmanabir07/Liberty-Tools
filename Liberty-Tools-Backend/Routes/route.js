@@ -1,5 +1,5 @@
 const express = require('express')
-const { getProducts, addProduct, deleteProduct, getCategories, addCategory, deleteCategory, updateProduct, updateCategory, downloadPdfFiles, getLogo, pdfUpload, uploadBanner, getBanners, deleteBanner, AddBlog, getBlogs, deleteBlog, addService, getServices, updateService, deleteService, businessProducts } = require('../Controller/Controller')
+const { getProducts, addProduct, deleteProduct, getCategories, addCategory, deleteCategory, updateProduct, updateCategory, downloadPdfFiles, getLogo, pdfUpload, uploadBanner, getBanners, deleteBanner, AddBlog, getBlogs, deleteBlog, addService, getServices, updateService, deleteService, businessProducts, addCertificate, deleteCertificate, getCertificate } = require('../Controller/Controller')
 const { register, login } = require('../Controller/AuthController')
 const router = express.Router()
 const multer = require('multer')
@@ -15,6 +15,7 @@ router.get('/', (req, res) => {
 // ====== GET Routes ======
 router.get('/getProducts', getProducts)
 router.get('/getCategories', getCategories)
+router.get('/getCertificate', getCertificate)
 router.get('/getLogo', getLogo)
 router.get('/getBanners', getBanners)
 router.get('/getBlogs', getBlogs)
@@ -31,6 +32,9 @@ router.post('/addCategory', upload.fields([
     { name: 'image' },
     { name: 'bannerImage' }
 ]), addCategory)
+router.post('/addCertificate', upload.fields([
+    { name: 'image' },
+]), addCertificate)
 router.post('/addBlog', upload.fields([
     { name: 'images' }
 ]), AddBlog)
@@ -53,6 +57,8 @@ router.delete('/deleteCategory', deleteCategory)
 router.delete('/deleteBanner', deleteBanner)
 router.delete('/deleteBlog', deleteBlog)
 router.delete('/deleteService', deleteService)
+router.delete('/deleteCertificate', deleteCertificate)
+
 
 module.exports = {
     router

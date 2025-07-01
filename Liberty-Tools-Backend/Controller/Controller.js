@@ -8,6 +8,7 @@ const { Logo } = require("../Model/logo")
 const { Banners } = require("../Model/Banners")
 const { Blogs } = require("../Model/Blogs")
 const { Services } = require("../Model/services")
+const { Certificates } = require("../Model/certificates")
 
 const getProducts = async (req, res) => {
 
@@ -56,6 +57,26 @@ const getCategories = async (req, res) => {
             "message": error.message
         })
     }
+
+
+}
+const getCertificate = async (req, res) => {
+    try {
+
+        const data = await Certificates.find({}).lean()
+        if (data) {
+            res.send({
+                data:data
+            })
+        }
+
+    } catch (error) {
+        res.send({
+            "message": error.message
+        })
+    }
+
+
 }
 
 const businessProducts = async (req, res) => {
@@ -512,6 +533,94 @@ const addCategory = async (req, res) => {
     }
 }
 
+const addCertificate = async (req, res) => {
+    try {
+
+        const files = req.files
+        const name = req.body.name
+
+        const search = await Certificates.find({ name: name }).lean()
+        if (search.length > 0) {
+            return res.send({
+                'message': 'This Certificate Exists'
+            })
+
+        }
+
+        const data = {
+            name,
+            imageUrl: '',
+
+        }
+        data.imageUrl = await uploadImages(files.image)
+
+
+
+
+        const addCertificate = new Certificates(data)
+
+        const result = await addCertificate.save()
+        const certificates = await Certificates.find({}).sort({ createdAt: -1 })
+
+
+        if (result) {
+            res.send({
+                'message': 'New Categpory Added',
+                data: certificates
+
+            })
+        } else {
+            res.status(400).send({
+                'message': 'Couldnt Add it',
+                data: certificates
+
+            })
+        }
+
+    } catch (error) {
+        console.log('err', error.message)
+        res.status(500).send({
+            'message': error.message
+        })
+    }
+
+
+}
+
+const deleteCertificate = async (req, res) => {
+    try {
+
+        const { id } = req.body
+
+
+        const search = await Certificates.find({ _id: id }).lean()
+        if (search.length > 0) {
+
+            const dlt = await Certificates.deleteOne({ _id: id })
+            if (dlt) {
+                const data = await Certificates.find({}).lean()
+                return res.send({
+                    'message': 'Certificate Deleted Successfully',
+                    data: data
+                })
+            } else {
+                return res.send({
+                    'message': 'Couldnt Delete it'
+                })
+            }
+
+        }
+        return res.send({
+            'message': 'Certificate Doesnt Exist'
+        })
+
+    } catch (error) {
+        res.status(500).send({
+            'message': 'Error Deleting Certificates'
+        })
+    }
+}
+
 const deleteCategory = async (req, res) => {
     try {
 
@@ -832,5 +941,5 @@ const deleteService = async (req, res) => {
 
 
 module.exports = {
-    businessProducts, deleteService, updateService, getServices, addService, deleteBlog, getBlogs, AddBlog, deleteBanner, uploadBanner, getBanners, pdfUpload, getLogo, downloadPdfFiles, getProducts, addProduct, deleteProduct, getCategories, addCategory, deleteCategory, updateProduct, updateCategory
+    deleteCertificate,addCertificate, businessProducts, deleteService, updateService, getServices, addService, deleteBlog, getBlogs, AddBlog, deleteBanner, uploadBanner, getBanners, pdfUpload, getLogo, downloadPdfFiles, getProducts, addProduct, deleteProduct, getCategories,getCertificate, addCategory, deleteCategory, updateProduct, updateCategory
 }

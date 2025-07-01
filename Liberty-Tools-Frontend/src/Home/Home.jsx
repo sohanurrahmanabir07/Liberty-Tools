@@ -9,6 +9,7 @@ import { ProductWithProjects } from '../Product With Projects/ProductWithProject
 import BlogSlider from '../Blog Slider/BlogSlider'
 import TestimonialsSlider from '../About/Testimonials/Testimonials'
 import svg from "../assets/img/SVG/alien-svgrepo-com.svg"
+import { Certificate } from '../Certificate/Certificate'
 export const Home = () => {
 
     return (
@@ -34,6 +35,7 @@ export const Home = () => {
                 <TabsWithContent></TabsWithContent>
             </div>
             <ProductBusiness></ProductBusiness>
+            <Certificate></Certificate>
             <TestimonialsSlider></TestimonialsSlider>
             <BlogSlider></BlogSlider>
 

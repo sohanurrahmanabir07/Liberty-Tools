@@ -26,6 +26,7 @@ import { Login } from "../src/Login-Register/Login.jsx"
 import { DashboardBlog } from './Dashboard/Dashboard Blog/DashboardBlog.jsx'
 import { ProtectedRoute } from './Protected Route/ProtectedRoute.jsx'
 import { ScrollTop } from './Custom Hooks/ScrollTop.jsx'
+import { DashboardCertificate } from './Dashboard/Dashboard Certificate/DashboardCertificate.jsx'
 const router = createBrowserRouter([
   {
     path: "/",
@@ -104,6 +105,10 @@ const router = createBrowserRouter([
           {
             path: '/dashboard/blog',
             element: <DashboardBlog></DashboardBlog>
+          },
+          {
+            path: '/dashboard/certificate',
+            element: <DashboardCertificate></DashboardCertificate>
           },
 
         ]

@@ -82,7 +82,7 @@ export const Navbar = ({ products, categories }) => {
 
                             <div className='w-25 cursor-pointer block' onClick={() => navigate('/')}>
                                 {logo ?
-                                    (<img loading="lazy" src={logo} alt="Logo"  />)
+                                    (<img loading="lazy" src={logo} alt="Logo" />)
                                     : (<div className='skeleton rounded-sm h-10'></div>)
                                 }
                             </div>
@@ -168,9 +168,9 @@ export const Navbar = ({ products, categories }) => {
             </nav>
             {showMegaBar && (
                 <div
-                ref={megaBarRef}
-                className="bg-white w-full transition-all duration-300 hidden md:block max-w-[1340px] mx-auto left-1/2 transform -translate-x-1/2 fixed top-[70px] shadow-2xl shadow-orange-300 rounded-lg z-50"
-            >
+                    ref={megaBarRef}
+                    className="bg-white w-full transition-all duration-300 hidden md:block max-w-[1340px] mx-auto left-1/2 transform -translate-x-1/2 fixed top-[70px] shadow-2xl shadow-orange-300 rounded-lg z-50"
+                >
                     <div className='flex justify-end p-2'>
                         <div
                             className='cursor-pointer hover:scale-105 text-orange-500 duration-300'
@@ -192,7 +192,7 @@ export const Navbar = ({ products, categories }) => {
                                     className='w-[150px] rounded-md  object-cover mb-2'
                                     alt={item?.name}
                                 />
-                                <Link className="text-center text-black font-semibold hover:underline w-full" to={`/category/${urlConverter(item?.name)}`}>
+                                <Link className="text-center text-orange-500 font-semibold hover:underline w-full" to={`/category/${urlConverter(item?.name)}`}>
                                     {capitalizeWords(item?.name)}
                                 </Link>
                             </div>

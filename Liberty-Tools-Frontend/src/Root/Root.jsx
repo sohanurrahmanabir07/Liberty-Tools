@@ -23,7 +23,8 @@ export const Root = () => {
   const [banners, setBanners] = useState([])
   const [blogs, setBlogs] = useState([])
   const [services, setServices] = useState([])
-  const [businessProducts,setBusinessProducts]=useState(null)
+  const [businessProducts, setBusinessProducts] = useState(null)
+  const [certificate, setCertificate] = useState(null)
   const dispatch = useDispatch()
   const admin = useSelector((state) => state.LibertyTools.users)
   useEffect(() => {
@@ -42,8 +43,11 @@ export const Root = () => {
     setBlogs: setBlogs,
     services: services,
     setServices: setServices,
-    businessProducts:businessProducts,
-    setBusinessProducts:setBusinessProducts
+    businessProducts: businessProducts,
+    setBusinessProducts: setBusinessProducts,
+    certificate: certificate,
+    setCertificate: setCertificate
+
   }
 
   useEffect(() => {
@@ -154,9 +158,9 @@ export const Root = () => {
       })
 
     axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/getBusinessProducts`)
-      .then((res) => 
+      .then((res) =>
 
-        
+
         setBusinessProducts(res.data.data)
       )
       .catch((err) => {
@@ -166,6 +170,21 @@ export const Root = () => {
 
         });
       })
+
+    axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/getCertificate`)
+      .then((res) =>
+
+
+        setCertificate(res.data.data)
+      )
+      .catch((err) => {
+        Swal.fire({
+          icon: "error",
+          title: err.message,
+
+        });
+      })
+
 
 
   }, [])

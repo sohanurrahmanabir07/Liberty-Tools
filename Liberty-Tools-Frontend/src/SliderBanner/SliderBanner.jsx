@@ -44,7 +44,7 @@ export const SliderBanner = () => {
             {
                 banners.length == 0 ?
                     (
-                        <div className="skeleton w-full h-screen"></div>
+                        <div className="skeleton w-full h-[500px] md:h-screen"></div>
                     )
                     :
 
@@ -67,7 +67,7 @@ export const SliderBanner = () => {
 
                                     [1, 2].map((item, index) => {
                                         return (
-                                            <div className="w-full  md:h-screen h-[450px]  overflow-hidden " key={index}>
+                                            <div className="w-full  md:h-screen h-[500px]  overflow-hidden " key={index}>
                                                 <img src={banners[0].imageUrl[0]} className="w-full  brightness-50 object-cover h-full " alt="" />
                                             </div>
                                         )
