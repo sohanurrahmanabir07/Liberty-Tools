@@ -59,6 +59,7 @@ export const ProductUpdate = ({ item }) => {
         }
     }, [item]);
 
+    
     // ----------- Images -----------
     const handleFileChange = (e) => {
         const files = Array.from(e.target.files);
@@ -98,7 +99,7 @@ export const ProductUpdate = ({ item }) => {
 
     // ----------- Submit -----------
     const handleSubmit = async (e) => {
-        if (!images.length || !name || !model || !description || !category) {
+        if (!images.length || !name || !model || !description || !category || !existingPdfs.length) {
             Swal.fire({ icon: "error", title: "Missing required fields" });
             return;
         }
@@ -150,8 +151,6 @@ export const ProductUpdate = ({ item }) => {
             pdf: Object.assign({}, ...pdfInfo)
         };
 
-        console.log('info',info);
-        
         formData.append('info', JSON.stringify(info));
         setLoading(true);
 
@@ -164,10 +163,15 @@ export const ProductUpdate = ({ item }) => {
                 setProducts(res.data.data);
                 document.getElementById(`ProductUpdate-${item?._id}`).checked = false
                 Swal.fire({ icon: "success", title: "Updated Successfully" });
+            }else{
+                Swal.fire({ icon: "failed",  title: res.data.message });
             }
-        } catch (err) {
-            Swal.fire({ icon: "error", title: "Error updating", text: err.message });
-        } finally {
+            console.log('response',res);
+                    } catch (err) {
+                        console.log('error',err);
+                        
+            Swal.fire({ icon: "error", title: "Error updating", text: err.response.data.message });
+        } finally { 
             setLoading(false);
         }
     };
@@ -213,13 +217,16 @@ export const ProductUpdate = ({ item }) => {
         setExistingPdfs(dbPdfs.length ? dbPdfs : []);
         setPdfs([{ key: '', file: null }]);
         document.getElementById(`ProductUpdate-${item?._id}`).checked = false
+
+        fileInputRef.current.value=null,
+        pdfInputRef.current.value=null
     }
 
     return (
         <div>
             <input type="checkbox" id={`ProductUpdate-${item?._id}`} className="modal-toggle" />
             <div className="modal" role="dialog">
-                <div className="modal-box relative">
+                <div className="modal-box md:max-w-[700px] md:h-auto overflow-y-auto  relative">
                     <div className="modal-action absolute -top-6 right-4 cursor-pointer" onClick={hanldeClose}>
                         <FontAwesomeIcon icon={faXmark} size='lg' />
                     </div>

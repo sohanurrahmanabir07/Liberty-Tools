@@ -89,9 +89,9 @@ const businessProducts = async (req, res) => {
             { $sort: { categoryCreatedAt: 1 } } // ensure order by category oldest first
         ]);
 
-        if(result){
+        if (result) {
             res.send({
-                data:result
+                data: result
             })
         }
     } catch (error) {
@@ -298,93 +298,92 @@ const UploadBlog = () => {
 
 const updateProduct = async (req, res) => {
     try {
-
-        
-        const files = req.files || {};
+        // Multer gives req.files as an array when using .any()
+        const files = req.files || [];
         const infoString = req.body.info;
 
-
         const existingImages = req.body.existingImages || [];
-        const existingPdfsRaw = req.body.existingPdfs || [];
-        const removedPdfsRaw = req.body.removedPdfs || [];
-
+        const existingPdfsRaw = req.body.existingPdfs || '[]';
+        const removedPdfsRaw = req.body.removedPdfs || '[]';
 
         if (!infoString) {
             return res.status(400).send({ message: "Missing info data" });
         }
 
         const info = JSON.parse(infoString);
-        console.log('existing images',existingPdfsRaw);
-        
-        
-        // ----------- Images -----------
-        const imageUrl = [];
-        if (typeof existingImages === 'string') {
-            imageUrl.push(existingImages);
-        } else if (Array.isArray(existingImages)) {
-            imageUrl.push(...existingImages);
-        }
-        if (files.images && files.images.length > 0) {
-            for (const file of files.images) {
-                const result = await cloudinary.uploader.upload(file.path);
-                imageUrl.push(result.secure_url);
-            }
-        }
-        info.imageUrl = imageUrl;
 
-        // ----------- PDFs -----------
-        let pdfObject = {};
+        // --- Handle Images ---
+        // Get new image files
+        const imageFiles = files.filter(f => f.fieldname === 'images');
+        // Upload new images (implement uploadImages to return array of urls)
+        let uploadedImageUrls = [];
+        for (const imgFile of imageFiles) {
+            const result = await cloudinary.uploader.upload(imgFile.path);
+            uploadedImageUrls.push(result.secure_url);
+        }
+
+        // Merge with existing (kept) images
+        let existingImageArr = [];
+        if (typeof existingImages === 'string' && existingImages) {
+            existingImageArr = [existingImages];
+        } else if (Array.isArray(existingImages)) {
+            existingImageArr = existingImages;
+        }
+        // Final imageUrl array
+        info.imageUrl = [...existingImageArr, ...uploadedImageUrls];
+
+        // --- Handle PDFs ---
+        // Parse existing/removed PDFs from stringified JSON
         let existingPdfs = [];
         let removedPdfs = [];
-        try {
-            existingPdfs = JSON.parse(existingPdfsRaw);
-        } catch (e) { existingPdfs = []; }
-        try {
-            removedPdfs = JSON.parse(removedPdfsRaw);
-        } catch (e) { removedPdfs = []; }
+        try { existingPdfs = JSON.parse(existingPdfsRaw); } catch { existingPdfs = []; }
+        try { removedPdfs = JSON.parse(removedPdfsRaw); } catch { removedPdfs = []; }
 
-        // Add retained PDFs (excluding removed ones)
+        // Build the PDF object: start with retained existing PDFs
+        let pdfObject = {};
         existingPdfs.forEach(({ key, url }) => {
             if (key && url && !removedPdfs.includes(key)) pdfObject[key] = url;
         });
 
-        // Add new PDFs
-        if (files) {
-            for (const [field, arr] of Object.entries(files)) {
-                if (field.startsWith('pdf_')) {
-                    const pdfKey = field.slice(4);
-                    const file = arr[0];
-                    const uploadedPdfUrl = await pdfUpload(file);
-                    if (uploadedPdfUrl) {
-                        pdfObject[pdfKey] = uploadedPdfUrl;
-                    }
-                }
-            }
+        // Find all PDF files from the files array
+        const pdfFiles = files.filter(f => f.fieldname.startsWith('pdf_'));
+        for (const pdfFile of pdfFiles) {
+            const key = pdfFile.fieldname.replace('pdf_', '');
+            const url = await pdfUpload(pdfFile); // Make sure pdfUpload returns the file URL
+            pdfObject[key] = url;
         }
 
-        // Ensure at least one PDF remains
+        // Assign the merged PDF object to info
         if (Object.keys(pdfObject).length < 1) {
-            return res.status(400).send({ message: "At least one PDF is required!" });
+            return res.status(401).send({ message: "At least one PDF is required!" });
         }
         info.pdf = pdfObject;
 
-        // ----------- Validate -----------
-        if (!info.name || imageUrl.length === 0) {
+        // --- Validate ---
+
+        if (!info.name || info.imageUrl.length === 0) {
             return res.status(400).send({ message: "Missing name or images" });
         }
 
-        // ----------- Update -----------
-
+        // --- Update DB ---
         const updatedProduct = await Products.findByIdAndUpdate(
             req.params.id,
             info,
             { new: true }
         );
         const products = await Products.find({}).sort({ createdAt: -1 }).lean();
-        return res.status(200).send({
-            message: "Product updated successfully",
-            data: products,
-        });
+        if (updateProduct && products) {
+            return res.status(200).send({
+                message: "Product updated successfully",
+                data: products,
+            });
+        } else {
+            return res.status(400).send({
+                message: "Error Updating or Fetching Products",
+
+            });
+        }
+
 
     } catch (error) {
         console.error("Update Error:", error);
@@ -413,7 +412,7 @@ const getBanners = async (req, res) => {
 
 
 const uploadBanner = async (req, res) => {
-    console.log('hitted')
+
     try {
         const info = JSON.parse(req.body.info)
         const files = req.files
@@ -833,5 +832,5 @@ const deleteService = async (req, res) => {
 
 
 module.exports = {
-    businessProducts,deleteService, updateService, getServices, addService, deleteBlog, getBlogs, AddBlog, deleteBanner, uploadBanner, getBanners, pdfUpload, getLogo, downloadPdfFiles, getProducts, addProduct, deleteProduct, getCategories, addCategory, deleteCategory, updateProduct, updateCategory
+    businessProducts, deleteService, updateService, getServices, addService, deleteBlog, getBlogs, AddBlog, deleteBanner, uploadBanner, getBanners, pdfUpload, getLogo, downloadPdfFiles, getProducts, addProduct, deleteProduct, getCategories, addCategory, deleteCategory, updateProduct, updateCategory
 }
