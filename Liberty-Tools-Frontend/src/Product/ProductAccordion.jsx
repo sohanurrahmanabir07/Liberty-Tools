@@ -102,7 +102,7 @@ const ProductAccordion = ({ item }) => {
         <ParameterTable data={item?.packingData} />
       </AccordionSection>
       <div className="py-8 flex justify-start px-5">
-        <button onClick={handleModal} className="bg-orange-500 hover:bg-orange-600 text-white text-lg font-semibold rounded-full px-10 py-3 flex items-center gap-2 transition">
+        <button onClick={handleModal} className="bg-orange-500 cursor-pointer hover:bg-orange-600 text-white text-lg font-semibold rounded-full px-10 py-3 flex items-center gap-2 transition">
           Send Inquiry <span className="text-xl">➔</span>
         </button>
       </div>

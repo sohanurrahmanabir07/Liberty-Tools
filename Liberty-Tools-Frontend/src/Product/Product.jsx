@@ -6,6 +6,8 @@ import { ProductDetails } from './ProductDetails'
 import { ProductInfo } from './ProductInfo'
 import { DynamicBanner } from '../Dynamic Banner/DynamicBanner'
 import ProductAccordion from './ProductAccordion'
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export const Product = () => {
     const { model } = useParams()
@@ -34,10 +36,9 @@ export const Product = () => {
     }, [products, categories])
 
 
-    // useEffect(()=>{
-    //     window.scrollTo(0,0)
-    // },[])
-
+    useEffect(() => {
+        AOS.init();
+    }, [])
 
 
     return (
@@ -54,7 +55,7 @@ export const Product = () => {
                         <div className="skeleton w-full h-[300px]"></div>
                     )
             }
-            <div className='max-w-[1440px] mx-auto px-5 space-y-10'>
+            <div  className='max-w-[1440px] mx-auto px-5 space-y-10'>
 
 
 
