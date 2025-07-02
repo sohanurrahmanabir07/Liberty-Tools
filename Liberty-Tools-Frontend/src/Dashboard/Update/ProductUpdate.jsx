@@ -20,7 +20,7 @@ export const ProductUpdate = ({ item }) => {
 
     const { setCategories, categories, products, setProducts } = useOutletContext();
     const fileInputRef = useRef();
-    const pdfInputRef = useRef();
+    const pdfInputRefs = useRef([]);
 
     useEffect(() => {
         if (item && item._id) {
@@ -59,7 +59,7 @@ export const ProductUpdate = ({ item }) => {
         }
     }, [item]);
 
-    
+
     // ----------- Images -----------
     const handleFileChange = (e) => {
         const files = Array.from(e.target.files);
@@ -97,9 +97,23 @@ export const ProductUpdate = ({ item }) => {
     // Remove an existing PDF (will not be sent to backend)
     const removeExistingPdf = (key) => setExistingPdfs(prev => prev.filter(pdf => pdf.key !== key));
 
+    const checkInput = () => {
+        for (let index = 0; index < pdfInputRefs.current.length; index++) {
+
+            if (pdfInputRefs.current[index].value) {
+                return false
+            }
+            return true
+        }
+    }
+
     // ----------- Submit -----------
     const handleSubmit = async (e) => {
-        if (!images.length || !name || !model || !description || !category || !existingPdfs.length) {
+
+
+        if (!images.length || !name || !model || !description || !category || (!existingPdfs.length && checkInput()
+
+        )) {
             Swal.fire({ icon: "error", title: "Missing required fields" });
             return;
         }
@@ -163,15 +177,15 @@ export const ProductUpdate = ({ item }) => {
                 setProducts(res.data.data);
                 document.getElementById(`ProductUpdate-${item?._id}`).checked = false
                 Swal.fire({ icon: "success", title: "Updated Successfully" });
-            }else{
-                Swal.fire({ icon: "failed",  title: res.data.message });
+            } else {
+                Swal.fire({ icon: "failed", title: res.data.message });
             }
-            console.log('response',res);
-                    } catch (err) {
-                        console.log('error',err);
-                        
+            console.log('response', res);
+        } catch (err) {
+            console.log('error', err);
+
             Swal.fire({ icon: "error", title: "Error updating", text: err.response.data.message });
-        } finally { 
+        } finally {
             setLoading(false);
         }
     };
@@ -182,6 +196,16 @@ export const ProductUpdate = ({ item }) => {
                 <span className="loading loading-spinner loading-xl"></span>
             </div>
         );
+    }
+
+    const nullifyPdfInput = () => {
+        fileInputRef.current.value = null,
+            pdfInputRefs.current.forEach((ref) => {
+                if (ref) {
+                    ref.value = null
+                }
+            })
+
     }
 
     const hanldeClose = () => {
@@ -216,10 +240,10 @@ export const ProductUpdate = ({ item }) => {
             : [];
         setExistingPdfs(dbPdfs.length ? dbPdfs : []);
         setPdfs([{ key: '', file: null }]);
+
         document.getElementById(`ProductUpdate-${item?._id}`).checked = false
 
-        fileInputRef.current.value=null,
-        pdfInputRef.current.value=null
+
     }
 
     return (
@@ -341,6 +365,7 @@ export const ProductUpdate = ({ item }) => {
                                         type="file"
                                         accept="application/pdf"
                                         onChange={e => handlePdfFieldChange(idx, 'file', e.target.files[0])}
+                                        ref={(ref) => pdfInputRefs.current[idx] = ref}
                                         className="border-2 border-gray-300 p-2"
                                     />
                                     <button type="button" className="btn btn-sm btn-primary" onClick={addPdfField}>+</button>

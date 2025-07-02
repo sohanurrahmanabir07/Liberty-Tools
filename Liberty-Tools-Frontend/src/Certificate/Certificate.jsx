@@ -36,6 +36,8 @@ export const Certificate = () => {
 
 
 
+
+
                                     />
                                     <div className="text-center text-xl font-semibold text-gray-700 ">
                                         <p>{item?.name}</p>
@@ -47,7 +49,7 @@ export const Certificate = () => {
                         :
                         [1, 2, 3, 4, 5, 6, 7, 8].map((item, index) => {
                             return (
-                                <div className="skeleton h-[350px] w-full md:w-[250px]  "></div>
+                                <div key={index} className="skeleton h-[350px] w-full md:w-[250px]  "></div>
                             )
                         })
                 }
