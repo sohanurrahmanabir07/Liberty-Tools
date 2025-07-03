@@ -24,30 +24,46 @@ const register = async (req, res) => {
 const login = async (req, res) => {
     try {
         const { email, password } = req.body
-
         const find = await Admin.find({ email: email })
-        if (find) {
-            const result=await bcrypt.compare(password,find[0].password)
 
-            if(result){
-                res.send({
-                    'message':'Login Successful',
-                    'user':find[0]
+        
+        if (find.length) {
+            // const result=await bcrypt.compare(password,find[0].password)
+
+            if (find[0].password == password) {
+                return res.send({
+                    'message': 'Login Successful',
+                    'user': find[0]
                 })
-            }else{
-                res.status(401).send({
-                    'message':'Password Wrong'
+            } else {
+               return res.status(401).send({
+                    'message': 'Password Wrong'
                 })
             }
-       }
+
+            // if (find) {
+
+            //     res.send({
+            //         'message': 'Login Successful',
+            //         'user': find[0]
+            //     })
+            // } else {
+            //     res.status(401).send({
+            //         'message': 'Password Wrong'
+            //     })
+            // }
+        }
+        return res.status(401).send({
+            'message': 'Admin Not Found'
+        })
 
     } catch (error) {
-        res.send({
-            'message':error.message
+        res.status(500).send({
+            'message': error.message
         })
     }
 }
 
 module.exports = {
-    register,login
+    register, login
 }

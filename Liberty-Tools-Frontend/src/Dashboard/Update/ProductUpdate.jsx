@@ -175,6 +175,7 @@ export const ProductUpdate = ({ item }) => {
             );
             if (res.status === 200) {
                 setProducts(res.data.data);
+                nullifyPdfInput()
                 document.getElementById(`ProductUpdate-${item?._id}`).checked = false
                 Swal.fire({ icon: "success", title: "Updated Successfully" });
             } else {
@@ -240,7 +241,7 @@ export const ProductUpdate = ({ item }) => {
             : [];
         setExistingPdfs(dbPdfs.length ? dbPdfs : []);
         setPdfs([{ key: '', file: null }]);
-
+        nullifyPdfInput()
         document.getElementById(`ProductUpdate-${item?._id}`).checked = false
 
 
