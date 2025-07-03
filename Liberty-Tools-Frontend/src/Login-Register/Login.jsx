@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router'
 import Swal from 'sweetalert2'
@@ -10,6 +10,7 @@ export const Login = () => {
     const [formType, setFormType] = useState('login')
     const user = useSelector((state) => state.LibertyTools.users)
     const [loading, setLoading] = useState(false)
+    const [logo, setLogo] = useState(null)
 
     const dispatch = useDispatch()
 
@@ -23,6 +24,16 @@ export const Login = () => {
         'confirmPassword': '',
 
     })
+
+    useEffect(() => {
+        axios.get(`${import.meta.env.VITE_BACKEND_URL}/api/getLogo`)
+            .then((res) => {
+                if (res.status == 200) {
+                    setLogo(res.data.data)
+                }
+            })
+            .catch((err) => console.log(err))
+    }, [])
 
     const handleSubmit = async (e) => {
         e.preventDefault()
@@ -79,8 +90,8 @@ export const Login = () => {
             setLoading(true)
             axios.post(`${import.meta.env.VITE_BACKEND_URL}/api/login`, formData)
                 .then((res) => {
-                    console.log('Response',res);
-                    
+                    console.log('Response', res);
+
                     if (res.status == 200) {
 
                         dispatch(addUser(res.data.user))
@@ -159,9 +170,21 @@ export const Login = () => {
     }
     return (
         <div className='h-screen flex justify-center items-center'>
+
+
             <form action="" onSubmit={handleSubmit}>
+                <section className='flex items-center justify-center'>
+                    <div className='w-[150px] cursor-pointer  ' onClick={() => navigate('/')}>
+                        {logo ?
+                            (<img loading="lazy" src={logo} alt="Logo" />)
+                            : (<div className='skeleton rounded-sm h-10'></div>)
+                        }
+                    </div>
+                </section>
+
                 <fieldset className="fieldset bg-base-200 border-base-300 rounded-box w-xs border p-4">
-                    <legend className="fieldset-legend">{formType == 'login' ? (
+
+                    <legend className="fieldset-legend text-xl ">{formType == 'login' ? (
                         <p>Login</p>
                     ) : (
                         <p>Register</p>
@@ -197,10 +220,10 @@ export const Login = () => {
 
 
                     <label className="label">Email</label>
-                    <input type="email" name='email' value={formData.email} onChange={handleForm} required className="input" placeholder="Compliance Email" />
+                    <input type="email" name='email' value={formData.email} onChange={handleForm} required className="input" placeholder="Admin Email" />
 
                     <label className="label">Password</label>
-                    <input type="text" required className="input" value={formData.password} onChange={handleForm} name='password' placeholder="Compliance Password" />
+                    <input type="text" required className="input" value={formData.password} onChange={handleForm} name='password' placeholder="Admin Password" />
                     {
                         formType == 'register' &&
                         (
@@ -238,7 +261,7 @@ export const Login = () => {
 
                     </div>
 
-                    <button disabled={!formData.email || !formData.password} className="btn btn-neutral mt-4"> {formType == 'login' ? ('Login') : ('Register')} {loading && (<span className="loading loading-spinner loading-xs"></span>)} </button>
+                    <button disabled={!formData.email || !formData.password || formType=='register'} className="btn  mt-4  bg-orange-500 text-white"> {formType == 'login' ? ('Login') : ('Register Not Available :(')} {loading && (<span className="loading loading-spinner loading-xs"></span>)} </button>
                 </fieldset>
             </form>
 
