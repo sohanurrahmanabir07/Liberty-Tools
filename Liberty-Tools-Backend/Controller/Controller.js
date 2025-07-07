@@ -514,7 +514,7 @@ const addCategory = async (req, res) => {
         const addCategory = new Categories(data)
         console.log(addCategory)
         const result = await addCategory.save()
-        const categories = await Categories.find({}).sort({ createdAt: -1 })
+        const categories = await Categories.find({}).sort({ createdAt: 1 })
 
 
         if (result) {
