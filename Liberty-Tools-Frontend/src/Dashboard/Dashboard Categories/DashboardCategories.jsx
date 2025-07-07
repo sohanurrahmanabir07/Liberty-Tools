@@ -83,6 +83,15 @@ export const DashboardCategories = () => {
             <section className='flex md:flex-wrap flex-col md:flex-row max-sm:items-center   gap-4'>
 
                 {
+                    !categories && [1,2,3,4,5].map((item,index)=>{
+                        return(
+                            <div key={index} className="skeleton h-[250px] w-[350px]"></div>
+                        )
+                    })
+                }
+                
+                
+                {
                     categories && categories.map((item, index) => {
                         return (
                             <div className='relative group' key={index}>

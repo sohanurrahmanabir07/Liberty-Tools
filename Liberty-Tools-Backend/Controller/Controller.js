@@ -47,7 +47,7 @@ const getLogo = async (req, res) => {
 const getCategories = async (req, res) => {
     try {
 
-        const data = await Categories.find({})
+        const data = await Categories.find({}).sort({ createdAt: 1 })
         if (data) {
             res.send(data)
         }
