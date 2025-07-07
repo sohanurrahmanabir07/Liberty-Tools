@@ -45,7 +45,8 @@ export const ProductInfo = ({ item }) => {
                 <input type="checkbox" />
                 <div className="collapse-title font-semibold text-orange-500  text-lg">Documents</div>
                 {
-                    item?.pdf ?
+                    item?.pdf && Object.keys(item.pdf).length ?
+
 
 
                         Object.keys(item.pdf).map((ele, index) => {
