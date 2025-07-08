@@ -9,10 +9,7 @@ const ProductSchema=Schema({
 
     description:String,
     imageUrl:[String],
-    parameter:[{
-        type: Map,
-        of:String
-    }],
+    parameter: [{ type: Object }],
     packingData: [{ type: Object }],
     pdf: { type: Object }
 },
