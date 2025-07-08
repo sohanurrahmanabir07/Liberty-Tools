@@ -13,7 +13,7 @@ const { Certificates } = require("../Model/certificates")
 const getProducts = async (req, res) => {
 
     try {
-        const data = await Products.find({}).sort({ createdAt: -1 }).lean()
+        const data = await Products.find({}).sort({ createdAt: 1 }).lean()
         res.send(data)
     } catch (error) {
         res.send({
@@ -160,7 +160,7 @@ const addProduct = async (req, res) => {
             await newProduct.save();
             console.log('new Product', newProduct);
 
-            const products = await Products.find({}).sort({ createdAt: -1 }).lean();
+            const products = await Products.find({}).sort({ createdAt: 1 }).lean();
             return res.status(200).send({
                 message: "Product uploaded successfully",
                 data: products,
