@@ -9,6 +9,7 @@ const { Banners } = require("../Model/Banners")
 const { Blogs } = require("../Model/Blogs")
 const { Services } = require("../Model/services")
 const { Certificates } = require("../Model/certificates")
+const { getPublicKey } = require("../Functions/functions")
 
 const getProducts = async (req, res) => {
 
@@ -375,9 +376,9 @@ const updateProduct = async (req, res) => {
         }
 
         // Assign the merged PDF object to info
-        if (Object.keys(pdfObject).length < 1) {
-            return res.status(401).send({ message: "At least one PDF is required!" });
-        }
+        // if (Object.keys(pdfObject).length < 1) {
+        //     return res.status(401).send({ message: "At least one PDF is required!" });
+        // }
         info.pdf = pdfObject;
 
         // --- Validate ---
@@ -918,25 +919,28 @@ const updateService = async (req, res) => {
 
 const deleteService = async (req, res) => {
 
-    const { id } = req.body
+    const value=getPublicKey("http://res.cloudinary.com/demo/image/upload/v1312461204/sample.jpg")
+    
 
-    const del = await Services.deleteOne({ _id: id })
-    try {
-        if (del) {
-            const data = await Services.find({}).lean()
-            res.status(200).send({
-                "message": "Service Deleted Successfully",
-                data: data
-            })
-        } else {
-            res.status(403).send({
-                "message": "Couldn't Delete it"
-            })
-        }
+    // const { id } = req.body
 
-    } catch (error) {
-        res.send(error.message)
-    }
+    // const del = await Services.deleteOne({ _id: id })
+    // try {
+    //     if (del) {
+    //         const data = await Services.find({}).lean()
+    //         res.status(200).send({
+    //             "message": "Service Deleted Successfully",
+    //             data: data
+    //         })
+    //     } else {
+    //         res.status(403).send({
+    //             "message": "Couldn't Delete it"
+    //         })
+    //     }
+
+    // } catch (error) {
+    //     res.send(error.message)
+    // }
 }
 
 

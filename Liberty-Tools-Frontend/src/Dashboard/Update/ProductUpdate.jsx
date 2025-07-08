@@ -111,9 +111,9 @@ export const ProductUpdate = ({ item }) => {
     const handleSubmit = async (e) => {
 
 
-        if (!images.length || !name || !model || !description || !category || (!existingPdfs.length && checkInput()
-
-        )) {
+        if (!images.length || !name || !model || !description || !category 
+            // || (!existingPdfs.length && checkInput())
+        ) {
             Swal.fire({ icon: "error", title: "Missing required fields" });
             return;
         }

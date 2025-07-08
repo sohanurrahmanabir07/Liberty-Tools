@@ -125,6 +125,8 @@ export const ProductUpload = () => {
             if (pdfInputRef.current) pdfInputRef.current.value = null;
 
         } catch (err) {
+
+         console.log('error',err)
             Swal.fire({ icon: "error", title: "Error uploading", text: err.message });
         } finally {
             setLoading(false);
