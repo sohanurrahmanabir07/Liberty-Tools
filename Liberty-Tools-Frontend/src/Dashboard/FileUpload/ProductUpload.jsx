@@ -96,8 +96,8 @@ export const ProductUpload = () => {
             parameter: transformedParameter,
             packingData: transformedPackingData,
             pdf: pdfs.filter(p => p.key).map(pdf => ({ [pdf.key]: "" }))
-};
- 
+        };
+
 
         formData.append('info', JSON.stringify(info));
 
@@ -126,19 +126,25 @@ export const ProductUpload = () => {
 
         } catch (err) {
 
-         console.log('error',err)
+            console.log('error', err)
             Swal.fire({ icon: "error", title: "Error uploading", text: err.message });
         } finally {
             setLoading(false);
         }
     };
+    const handleClose = () => {
+        fileInputRef.current.value = null;
+        if (pdfInputRef.current) pdfInputRef.current.value = null;
 
+        document.getElementById('my_modal_4').checked=false
+        setImages([]);
+    }   
     return (
         <div>
             <input type="checkbox" id="my_modal_4" className="modal-toggle" />
             <div className="modal">
                 <div className="modal-box  md:max-w-[700px] md:h-auto overflow-y-auto  relative">
-                    <label htmlFor="my_modal_4" className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</label>
+                    <div onClick={handleClose} className="btn btn-sm btn-circle btn-ghost absolute right-2 top-2">✕</div>
 
                     <section className='space-y-4'>
                         <div className='space-y-4'>
