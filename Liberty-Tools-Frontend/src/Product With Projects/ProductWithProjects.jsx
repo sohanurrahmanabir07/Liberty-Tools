@@ -27,8 +27,13 @@ export const ProductWithProjects = () => {
         </div>
       </div>
       {/* Image Grid */}
+
+      <div className="flex justify-end mb-4" onClick={()=>navigate("/all-products")}>
+        <p className="hover:scale-x-105 transition-all duration-300 cursor-pointer font-semibold hover:underline text-orange-500"> View All Products</p>
+      </div>
+
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-        {products && products.map((item, idx) => (
+        {products && products.slice(0,6).map((item, idx) => (
           <div
             key={idx}
             onClick={() => navigate(`/products/${item?.model}`)}

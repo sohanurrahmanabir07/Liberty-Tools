@@ -9,7 +9,7 @@ const { Banners } = require("../Model/Banners")
 const { Blogs } = require("../Model/Blogs")
 const { Services } = require("../Model/services")
 const { Certificates } = require("../Model/certificates")
-const { getPublicKey } = require("../Functions/functions")
+const { getPublicKey, deleteImage } = require("../Functions/functions")
 
 const getProducts = async (req, res) => {
 
@@ -67,7 +67,7 @@ const getCertificate = async (req, res) => {
         const data = await Certificates.find({}).lean()
         if (data) {
             res.send({
-                data:data
+                data: data
             })
         }
 
@@ -919,31 +919,39 @@ const updateService = async (req, res) => {
 
 const deleteService = async (req, res) => {
 
-    const value=getPublicKey("http://res.cloudinary.com/demo/image/upload/v1312461204/sample.jpg")
-    
 
-    // const { id } = req.body
+    const { id } = req.body
 
-    // const del = await Services.deleteOne({ _id: id })
-    // try {
-    //     if (del) {
-    //         const data = await Services.find({}).lean()
-    //         res.status(200).send({
-    //             "message": "Service Deleted Successfully",
-    //             data: data
-    //         })
-    //     } else {
-    //         res.status(403).send({
-    //             "message": "Couldn't Delete it"
-    //         })
-    //     }
+    const data = await Categories.findById(id)
+    const deleteImages = await deleteImage(data.imageUrl)
+    if (deleteImages) {
+        const del = await Services.deleteOne({ _id: id })
+        try {
+            if (del) {
+                const data = await Services.find({}).sort({ createdAt: -1 }).lean()
+                res.status(200).send({
+                    "message": "Service Deleted Successfully",
+                    data: data
+                })
+            } else {
+                res.status(403).send({
+                    "message": "Couldn't Delete it"
+                })
+            }
 
-    // } catch (error) {
-    //     res.send(error.message)
-    // }
+        } catch (error) {
+            res.send(error.message)
+        }
+    } else {
+        res.send({
+            "message": "Couldn't Delete all images"
+        })
+    }
+
+
 }
 
 
 module.exports = {
-    deleteCertificate,addCertificate, businessProducts, deleteService, updateService, getServices, addService, deleteBlog, getBlogs, AddBlog, deleteBanner, uploadBanner, getBanners, pdfUpload, getLogo, downloadPdfFiles, getProducts, addProduct, deleteProduct, getCategories,getCertificate, addCategory, deleteCategory, updateProduct, updateCategory
+    deleteCertificate, addCertificate, businessProducts, deleteService, updateService, getServices, addService, deleteBlog, getBlogs, AddBlog, deleteBanner, uploadBanner, getBanners, pdfUpload, getLogo, downloadPdfFiles, getProducts, addProduct, deleteProduct, getCategories, getCertificate, addCategory, deleteCategory, updateProduct, updateCategory
 }
