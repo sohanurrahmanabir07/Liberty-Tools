@@ -69,7 +69,7 @@ export const Navbar = ({ products, categories }) => {
         <div className='relative'>
 
             <nav className='max-w-[1340px] mx-auto' >
-                <section className={` transition-colors duration-300 max-sm:text-black ${navbarBg} w-full fixed top-0 left-0 bg-amber-700 max-sm:p-5 z-20 md:z-35 md:px-10 px-5  h-[70px]`}>
+                <section className={` transition-colors duration-300 max-sm:text-black ${navbarBg} w-full fixed top-0 left-0 bg-amber-700 max-sm:p-5 z-20 md:z-35 md:px-10 px-5  h-[60px]`}>
                     <div className='flex justify-between mx-auto items-center max-w-[1340px]   ' >
 
                         {/* Start (Logo & Drawer) */}
@@ -169,7 +169,7 @@ export const Navbar = ({ products, categories }) => {
             {showMegaBar && (
                 <div
                     ref={megaBarRef}
-                    className="bg-white w-full transition-all duration-300 hidden md:block max-w-[1340px] mx-auto left-1/2 transform -translate-x-1/2 fixed top-[70px] shadow-2xl shadow-orange-300 rounded-lg z-50"
+                    className="bg-white w-full transition-all duration-300 hidden md:block max-w-[1340px] mx-auto left-1/2 transform -translate-x-1/2 fixed top-[60px] shadow-2xl shadow-orange-300 rounded-lg z-50"
                 >
                     <div className='flex justify-end p-2'>
                         <div
@@ -179,7 +179,7 @@ export const Navbar = ({ products, categories }) => {
                             View All Products
                         </div>
                     </div>
-                    <section className="flex flex-wrap gap-5 p-5">
+                    <section className="flex  flex-row justify-center items-center md:flex-wrap gap-5 p-5">
                         {categories && categories.map((item, index) => (
                             <div
                                 key={index}
@@ -189,7 +189,7 @@ export const Navbar = ({ products, categories }) => {
                                 <img
                                     loading="lazy"
                                     src={item?.imageUrl || `https://upload.wikimedia.org/wikipedia/commons/thumb/d/d1/Image_not_available.png/640px-Image_not_available.png`}
-                                    className='w-[150px] rounded-md  object-cover mb-2'
+                                    className='w-[200px] rounded-md  object-cover mb-2'
                                     alt={item?.name}
                                 />
                                 <Link className="text-center text-orange-500 font-semibold hover:underline w-full" to={`/category/${urlConverter(item?.name)}`}>
